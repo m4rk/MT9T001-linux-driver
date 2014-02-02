@@ -1,0 +1,6 @@
+main_prog.bin
+/sahb
+/snapgear-original
+
+# Never ignore .gitignore files
+!.gitignore

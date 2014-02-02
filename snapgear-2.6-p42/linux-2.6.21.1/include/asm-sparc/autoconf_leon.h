@@ -1,0 +1,10 @@
+#define CONFIG_PAGE_SIZE_LEON_4K 1
+#define CONFIG_LEON 1
+#define CONFIG_LEON_3 1
+#if defined(PAGE_SIZE_LEON_8K)
+#define CONFIG_PAGE_SIZE_LEON 1
+#elif defined(PAGE_SIZE_LEON_16K)
+#define CONFIG_PAGE_SIZE_LEON 2)
+#else
+#define CONFIG_PAGE_SIZE_LEON 0
+#endif
