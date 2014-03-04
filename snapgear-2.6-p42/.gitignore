@@ -1,0 +1,11 @@
+*.a
+*.o
+*.out
+config.*
+.config.old
+.oldconfig
+
+config/
+lib/
+
+!.gitignore

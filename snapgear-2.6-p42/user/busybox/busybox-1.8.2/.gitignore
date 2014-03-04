@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+<title>busybox - BusyBox: The Swiss Army Knife of Embedded Linux</title>
+<meta name='generator' content='cgit v0.9.1'/>
+<meta name='robots' content='index, nofollow'/>
+<link rel='stylesheet' type='text/css' href='/cgit.css'/>
+<link rel='alternate' title='Atom feed' href='http://git.busybox.net/busybox/atom/.gitignore?h=master' type='application/atom+xml'/>
+</head>
+<body>
+<div id='cgit'><table id='header'>
+<tr>
+<td class='logo' rowspan='2'><a href='/'><img src='/busybox1.png' alt='cgit logo'/></a></td>
+<td class='main'><a href='/'>index</a> : <a title='busybox' href='/busybox/'>busybox</a></td><td class='form'><form method='get' action=''>
+<select name='h' onchange='this.form.submit();'>
+<option value='0_60_stable'>0_60_stable</option>
+<option value='1_00_stable'>1_00_stable</option>
+<option value='1_00_stable_10817'>1_00_stable_10817</option>
+<option value='1_10_stable'>1_10_stable</option>
+<option value='1_11_stable'>1_11_stable</option>
+<option value='1_12_stable'>1_12_stable</option>
+<option value='1_13_stable'>1_13_stable</option>
+<option value='1_14_stable'>1_14_stable</option>
+<option value='1_15_stable'>1_15_stable</option>
+<option value='1_16_stable'>1_16_stable</option>
+<option value='1_17_stable'>1_17_stable</option>
+<option value='1_18_stable'>1_18_stable</option>
+<option value='1_19_stable'>1_19_stable</option>
+<option value='1_1_stable'>1_1_stable</option>
+<option value='1_20_stable'>1_20_stable</option>
+<option value='1_21_stable'>1_21_stable</option>
+<option value='1_22_stable'>1_22_stable</option>
+<option value='1_3_stable'>1_3_stable</option>
+<option value='1_4_stable'>1_4_stable</option>
+<option value='1_5_stable'>1_5_stable</option>
+<option value='1_6_stable'>1_6_stable</option>
+<option value='1_7_stable'>1_7_stable</option>
+<option value='1_8_stable'>1_8_stable</option>
+<option value='1_9_stable'>1_9_stable</option>
+<option value='master' selected='selected'>master</option>
+</select> <input type='submit' name='' value='switch'/></form></td></tr>
+<tr><td class='sub'>BusyBox: The Swiss Army Knife of Embedded Linux</td><td class='sub right'>vda</td></tr></table>
+<table class='tabs'><tr><td>
+<a href='/busybox/'>summary</a><a href='/busybox/refs/'>refs</a><a href='/busybox/log/.gitignore'>log</a><a class='active' href='/busybox/tree/.gitignore'>tree</a><a href='/busybox/commit/.gitignore'>commit</a><a href='/busybox/diff/.gitignore'>diff</a></td><td class='form'><form class='right' method='get' action='/busybox/log/.gitignore'>
+<select name='qt'>
+<option value='grep'>log msg</option>
+<option value='author'>author</option>
+<option value='committer'>committer</option>
+<option value='range'>range</option>
+</select>
+<input class='txt' type='text' size='10' name='q' value=''/>
+<input type='submit' value='search'/>
+</form>
+</td></tr></table>
+<div class='path'>path: <a href='/busybox/tree/'>root</a>/<a href='/busybox/tree/.gitignore'>.gitignore</a></div><div class='content'>blob: 8d6d17601be1b0be48cf397083c18f9cf330513b (<a href='/busybox/plain/.gitignore'>plain</a>)
+<table summary='blob content' class='blob'>
+<tr><td class='linenumbers'><pre><a class='no' id='n1' name='n1' href='#n1'>1</a>
+<a class='no' id='n2' name='n2' href='#n2'>2</a>
+<a class='no' id='n3' name='n3' href='#n3'>3</a>
+<a class='no' id='n4' name='n4' href='#n4'>4</a>
+<a class='no' id='n5' name='n5' href='#n5'>5</a>
+<a class='no' id='n6' name='n6' href='#n6'>6</a>
+<a class='no' id='n7' name='n7' href='#n7'>7</a>
+<a class='no' id='n8' name='n8' href='#n8'>8</a>
+<a class='no' id='n9' name='n9' href='#n9'>9</a>
+<a class='no' id='n10' name='n10' href='#n10'>10</a>
+<a class='no' id='n11' name='n11' href='#n11'>11</a>
+<a class='no' id='n12' name='n12' href='#n12'>12</a>
+<a class='no' id='n13' name='n13' href='#n13'>13</a>
+<a class='no' id='n14' name='n14' href='#n14'>14</a>
+<a class='no' id='n15' name='n15' href='#n15'>15</a>
+<a class='no' id='n16' name='n16' href='#n16'>16</a>
+<a class='no' id='n17' name='n17' href='#n17'>17</a>
+<a class='no' id='n18' name='n18' href='#n18'>18</a>
+<a class='no' id='n19' name='n19' href='#n19'>19</a>
+<a class='no' id='n20' name='n20' href='#n20'>20</a>
+<a class='no' id='n21' name='n21' href='#n21'>21</a>
+<a class='no' id='n22' name='n22' href='#n22'>22</a>
+<a class='no' id='n23' name='n23' href='#n23'>23</a>
+<a class='no' id='n24' name='n24' href='#n24'>24</a>
+<a class='no' id='n25' name='n25' href='#n25'>25</a>
+<a class='no' id='n26' name='n26' href='#n26'>26</a>
+<a class='no' id='n27' name='n27' href='#n27'>27</a>
+<a class='no' id='n28' name='n28' href='#n28'>28</a>
+<a class='no' id='n29' name='n29' href='#n29'>29</a>
+<a class='no' id='n30' name='n30' href='#n30'>30</a>
+<a class='no' id='n31' name='n31' href='#n31'>31</a>
+<a class='no' id='n32' name='n32' href='#n32'>32</a>
+<a class='no' id='n33' name='n33' href='#n33'>33</a>
+<a class='no' id='n34' name='n34' href='#n34'>34</a>
+<a class='no' id='n35' name='n35' href='#n35'>35</a>
+<a class='no' id='n36' name='n36' href='#n36'>36</a>
+<a class='no' id='n37' name='n37' href='#n37'>37</a>
+<a class='no' id='n38' name='n38' href='#n38'>38</a>
+<a class='no' id='n39' name='n39' href='#n39'>39</a>
+<a class='no' id='n40' name='n40' href='#n40'>40</a>
+<a class='no' id='n41' name='n41' href='#n41'>41</a>
+<a class='no' id='n42' name='n42' href='#n42'>42</a>
+<a class='no' id='n43' name='n43' href='#n43'>43</a>
+</pre></td>
+<td class='lines'><pre><code>#
+# Kbuild ignores
+#
+.*
+*.o
+*.o.*
+*.a
+*.s
+Kbuild
+Config.in
+
+#
+# Never ignore these
+#
+!.gitignore
+
+#
+# Normal output
+#
+/busybox
+/busybox_old
+/busybox_unstripped*
+
+#
+# Backups / patches
+#
+*~
+*.orig
+*.rej
+/*.patch
+
+#
+# debugging stuff
+#
+core
+.gdb_history
+.gdbinit
+
+#
+# testing output
+#
+/busybox.links
+/runtest-tempdir-links
+</code></pre></td></tr></table>
+</div> <!-- class=content -->
+<div class='footer'>generated  by cgit v0.9.1 at 2014-03-04 13:55:07 (GMT)</div>
+</div> <!-- id=cgit -->
+</body>
+</html>
