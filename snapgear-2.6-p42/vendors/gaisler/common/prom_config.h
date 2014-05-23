@@ -10,7 +10,7 @@
 /* if defined, jump immediately to this address after init */
 
 #ifndef JUMP_TO
-#define JUMP_TO BOOTLOADER_physbase /*0x40000000*/
+#define JUMP_TO (BOOTLOADER_physbase+0x1000) /*0x40000000*/
 #endif
 
 /* ram configuration */

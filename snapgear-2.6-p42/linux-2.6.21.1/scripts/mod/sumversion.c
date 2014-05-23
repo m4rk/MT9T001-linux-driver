@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <string.h>
 #include "modpost.h"
+#include "/home/kadaos/dmv02/linux/snapgear-2.6-p39/linux-2.6.21.1/include/linux/limits.h"
 
 /*
  * Stolen form Cryptographic API.

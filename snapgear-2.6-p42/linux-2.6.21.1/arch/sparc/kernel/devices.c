@@ -113,7 +113,7 @@ int cpu_get_hwmid(int prom_node)
 
 void __init device_scan(void)
 {
-	prom_printf("Booting Linux...\n");
+	prom_printf("Diaplous: Booting Linux...\n");
 
 #ifndef CONFIG_SMP
 	{

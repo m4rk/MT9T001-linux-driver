@@ -435,9 +435,13 @@ static void __init setup_command_line(char *command_line)
 static void noinline rest_init(void)
 	__releases(kernel_lock)
 {
+  	printk("diaplous: main.c : inside rest_init\n");
+
 	kernel_thread(init, NULL, CLONE_FS | CLONE_SIGHAND);
 	numa_default_policy();
 	unlock_kernel();
+
+  	printk("diaplous: main.c : after unlock_kernel\n");
 
 	/*
 	 * The boot idle thread must execute schedule()
@@ -446,6 +450,9 @@ static void noinline rest_init(void)
 	preempt_enable_no_resched();
 	schedule();
 	preempt_disable();
+
+
+  	printk("diaplous: main.c : before cpu_idle\n");
 
 	/* Call into cpu_idle with preempt disabled */
 	cpu_idle();
@@ -621,8 +628,10 @@ asmlinkage void __init start_kernel(void)
 	unnamed_dev_init();
 	key_init();
 	security_init();
-	vfs_caches_init(num_physpages);
-	radix_tree_init();
+	
+    vfs_caches_init(num_physpages);
+    radix_tree_init();
+	printk("diaplous: main.c : before signals_init\n");
 	signals_init();
 	/* rootfs populating might need page-writeback */
 	page_writeback_init();
@@ -638,7 +647,12 @@ asmlinkage void __init start_kernel(void)
 	acpi_early_init(); /* before LAPIC and SMP init */
 
 	/* Do the rest non-__init'ed, we're now alive */
+	printk("diaplous: main.c : before rest_init\n");
+
 	rest_init();
+
+	printk("diaplous: main.c : after rest_init\n");
+
 }
 
 static int __initdata initcall_debug;
@@ -662,7 +676,8 @@ static void __init do_initcalls(void)
 		char msgbuf[40];
 		int result;
 
-		if (initcall_debug) {
+		if (initcall_debug) 
+        {
 			printk("Calling initcall 0x%p", *call);
 			print_fn_descriptor_symbol(": %s()",
 					(unsigned long) *call);
@@ -706,10 +721,16 @@ static void __init do_basic_setup(void)
 {
 	/* drivers will send hotplug events */
 	init_workqueues();
+
 	usermodehelper_init();
 	driver_init();
 	init_irq_proc();
+
+#if 1
+    printk("diaplous: main.c : before do_initcalls\n");
 	do_initcalls();
+#endif
+
 }
 
 static void __init do_pre_smp_initcalls(void)
@@ -774,6 +795,9 @@ static int noinline init_post(void)
 
 static int __init init(void * unused)
 {
+   	// printk("diaplous: main.c : inside init\n");
+
+
 	lock_kernel();
 	/*
 	 * init can run on any cpu.
@@ -800,19 +824,25 @@ static int __init init(void * unused)
 
 	cpuset_init_smp();
 
+    printk("diaplous: main.c : before do_basic_setup\n");
+#if 1
 	do_basic_setup();
+#endif
 
 	/*
 	 * check if there is an early userspace init.  If yes, let it do all
 	 * the work
 	 */
-
 	if (!ramdisk_execute_command)
 		ramdisk_execute_command = "/init";
 
 	if (sys_access((const char __user *) ramdisk_execute_command, 0) != 0) {
 		ramdisk_execute_command = NULL;
-		prepare_namespace();
+// diaplous
+#if 1
+        printk("diaplous: main.c : before prepare_namespace\n");
+        prepare_namespace();
+#endif
 	}
 
 	/*

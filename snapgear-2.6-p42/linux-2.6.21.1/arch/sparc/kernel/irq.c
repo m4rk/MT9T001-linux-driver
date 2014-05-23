@@ -329,6 +329,9 @@ void unexpected_irq(int irq, void *dev_id, struct pt_regs * regs)
 	panic("bogus interrupt received");
 }
 
+
+unsigned int irq8_cnt = 0;
+
 void handler_irq(int irq, struct pt_regs * regs)
 {
 	struct pt_regs *old_regs;
@@ -350,7 +353,15 @@ void handler_irq(int irq, struct pt_regs * regs)
 	if((sparc_cpu_model==sun4m) && (irq < 10))
 		smp4m_irq_rotate(cpu);
 #endif
-	action = sparc_irq[irq].action;
+	
+    if (irq == 8) {
+        irq8_cnt++;
+        if ((irq8_cnt%1000)==0) 
+            printk("diaplous : handler_irq no:%d\n", irq);
+    } else {
+        printk("diaplous : handler_irq no:%d\n", irq);
+    }
+    action = sparc_irq[irq].action;
 	sparc_irq[irq].flags |= SPARC_IRQ_INPROGRESS;
 	kstat_cpu(cpu).irqs[irq]++;
 	do {
@@ -610,6 +621,7 @@ void __init init_IRQ(void)
 		break;
 		
 	case sparc_leon:
+        printk("diaplous: before leon_init_IRQ\n");
 		leon_init_IRQ();
 		break;
 

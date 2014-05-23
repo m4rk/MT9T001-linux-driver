@@ -104,7 +104,9 @@ static void __init handle_initrd(void)
 
 int __init initrd_load(void)
 {
+    printk("diaplous: do_mounts_initrd.c: inside of initrd_load\n");
 	if (mount_initrd) {
+        printk("diaplous: do_mounts_initrd.c: before create_dev\n");
 		create_dev("/dev/ram", Root_RAM0);
 		/*
 		 * Load the initrd data into /dev/ram0. Execute it as initrd
@@ -112,11 +114,15 @@ int __init initrd_load(void)
 		 * in that case the ram disk is just set up here, and gets
 		 * mounted in the normal path.
 		 */
-		if (rd_load_image("/initrd.image") && ROOT_DEV != Root_RAM0) {
+        printk("diaplous: do_mounts_initrd.c: before rd_load_image\n");
+        if (rd_load_image("/initrd.image") && ROOT_DEV != Root_RAM0) {
+            printk("diaplous: do_mounts_initrd.c: before sys_unlink\n");
 			sys_unlink("/initrd.image");
 			handle_initrd();
 			return 1;
-		}
+		} else {
+            printk("diaplous: do_mounts_initrd.c: rd_load_image returned false\n");
+        }
 	}
 	sys_unlink("/initrd.image");
 	return 0;

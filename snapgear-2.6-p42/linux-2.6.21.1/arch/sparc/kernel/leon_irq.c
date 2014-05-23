@@ -148,6 +148,8 @@ leon_init_timers(irqreturn_t(*counter_fn) (int, void *, struct pt_regs *))
 {
 	int irq;
 
+    // printk("Diaplous : leon_init_timers \n");
+
 	leondebug_irq_disable = 0;
 	leon_debug_irqout = 0;
 
@@ -241,7 +243,9 @@ leon_init_timers(irqreturn_t(*counter_fn) (int, void *, struct pt_regs *))
 		printk("leon_time_init: unable to attach IRQ%d\n",
 		       LEON_INTERRUPT_TIMER1);
 		prom_halt();
-	}
+	} else {
+            ; // printk("Diaplous : leon_time_init: attached IRQ%d\n", LEON_INTERRUPT_TIMER1);
+    }
 
 #ifdef CONFIG_LEON_3
 # ifdef CONFIG_SMP

@@ -19,7 +19,7 @@ ENTRY(_start)
 jiffies = jiffies_64 + 4;
 SECTIONS
 {
-        . = BOOTLOADER_physbase /*0x40000000*/;
+        . = BOOTLOADER_physbase + 0x1000 /*0x40000000*/;
         .stage2 : {
                 _start = .;
                 prom_stage2.o(.img.main.text)

@@ -1859,8 +1859,14 @@ void __init mnt_init(unsigned long mempages)
 	if (err)
 		printk(KERN_WARNING "%s: subsystem_register error: %d\n",
 			__FUNCTION__, err);
-	init_rootfs();
+
+	// printk("diaplous : before init_rootfs \n");
+
+    init_rootfs();
+	// printk("diaplous : before init_mount_tree \n");
 	init_mount_tree();
+	// printk("diaplous : after init_mount_tree \n");
+    
 }
 
 void __put_mnt_ns(struct mnt_namespace *ns)

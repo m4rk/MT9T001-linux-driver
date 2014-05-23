@@ -1043,6 +1043,7 @@ sun4c_continue_boot:
 		mov	0, %fp			/* And for good luck */
 
 		/* Zero out our BSS section. */
+
 		set	__bss_start , %o0	! First address of BSS
 		set	end , %o1		! Last address of BSS
 		add	%o0, 0x1, %o0

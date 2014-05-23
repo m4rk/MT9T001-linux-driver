@@ -15,7 +15,10 @@
 #include "prom_config.h"
 
 	.seg	"text"
+.global stage1, _stage1
 
+stage1:
+_stage1:
 _start:
 	wr	%g0, 0xfe0, %psr
 	mov	%g0, %tbr
@@ -23,8 +26,8 @@ _start:
 	flush
 	set	PREGS, %g1		! on-chip register base address
 
-        st    %g2, [%g1 + 0x14]	! clear some LEON registers
-        st    %g0, [%g1 + 0x08]     
+        !st    %g2, [%g1 + 0x14]	! clear some LEON registers
+        !st    %g0, [%g1 + 0x08]     
         st    %g0, [%g1 + 0x90]     
         st    %g0, [%g1 + 0x94]    
         st    %g0, [%g1 + 0x98]   
@@ -50,13 +53,14 @@ fpu:
 	sll	%o1, 8, %o1
 	wr	%o1, 0xe0, %psr
 
-	set	BOOTLOADER_memcfg1, %g2		! Load memory config register 1
-	ld	[%g1], %g3		! 
-	and	%g3, 0x300, %g3
-	or	%g2, %g3, %g2
-  	st	%g2, [%g1 + MCFG1]
-	set	BOOTLOADER_memcfg2, %g2
-	st	%g2, [%g1 + MCFG2]
+	!set	BOOTLOADER_memcfg1, %g2		! Load memory config register 1
+	!ld	[%g1], %g3		! 
+	!and	%g3, 0x300, %g3
+	!or	%g2, %g3, %g2
+  	!st	%g2, [%g1 + MCFG1]
+
+	!set	BOOTLOADER_memcfg2, %g2
+	!st	%g2, [%g1 + MCFG2]
  
 stackp:
 	set	BOOTLOADER_stack, %fp  
@@ -70,20 +74,27 @@ timer:
 	st	%g2, [%g1 + SCNT] 
 
 uart1:
-	set	0x8000, %g2		! set pio directions for serial io
-	st	%g2, [%g1 + IODIR]
+!	set	0x8000, %g2		! set pio directions for serial io
+!	st	%g2, [%g1 + IODIR]
 	st	%g0, [%g1 + USTAT0]	
 	set	3, %g2
 	st	%g2, [%g1 + UCTRL0]	! enable receiver and transmitter
 
-        set	BOOTLOADER_uart, %g2		! Load UART scaler register
-	st	%g2, [%g1 + USCAL0]
+!   set	BOOTLOADER_uart, %g2		! Load UART scaler register
+!	st	%g2, [%g1 + USCAL0]
+
+
+    sethi  %hi(0x70004000), %g1
+    mov	%g1, %tbr 
+    nop
+    nop
   	
 
 #ifdef JUMP_TO
 
 jump:	
-	set	JUMP_TO, %o1
+	!set	JUMP_TO, %o1
+    set	0x70001000, %o1
 	call	%o1
 	nop
 

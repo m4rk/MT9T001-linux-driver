@@ -11,7 +11,7 @@
  */
 
 #include "prom_config.h"
-//#include "../common/lib/_put.c"
+#include "../common/lib/_put.c"
 
 #include "linux/autoconf.h"
 #include "linux/kernel.h"
@@ -121,7 +121,7 @@ static struct leon_prom_info spi = {
 	{
 	  0x01, /* format */
 	  M_LEON2 | M_LEON2_SOC, /* machine type */
-	  {0,0,0,0,0,0}, /* eth */
+	  {0x00,0x16,0xE6,0x48,0x6A,0x70}, /* eth */
 	  0, /* date */
 	  0, /* sernum */
 	  0, /* checksum */
@@ -343,7 +343,8 @@ static void leon_prom_init()
 	memctrl2 = *((unsigned long*)(LEON_PREGS+LEON_MCFG2));
 
 	spi.totphys.num_bytes = 0;
-        /*
+
+/*            
 	if (memctrl2 & LEON_MCFG2_SRAMDIS) {
 		if (memctrl2 & LEON_MCFG2_SDRAMEN) {
 			i = (memctrl2 & LEON_MCFG2_SDRAMBANKSZ)
@@ -400,8 +401,9 @@ static void leon_prom_init()
         if (!spi.totphys.num_bytes) {
 		leon_halt();
                 }
-        */
-        //puts("prom_stage2.c: lolevel-config MCFG1: 0x%x MCFG2: 0x%x => 0x%x(%i banks)\n",memctrl1,memctrl2,spi.totphys.num_bytes,banks);
+*/
+        
+        // --- puts("prom_stage2.c: lolevel-config MCFG1: 0x%x MCFG2: 0x%x\r\n",memctrl1,memctrl2);
         sp = sp - LEONSETUP_MEM_BASEADDR /*0x40000000*/; 
         spi.totphys.num_bytes = (sp + 0x1000) & ~(0xfff);
         //puts("prom_stage2.c: sp-memsize-config sp: 0x%x             => 0x%x\n",sp,spi.totphys.num_bytes);
@@ -432,6 +434,8 @@ int __attribute__ ((__section__ (".img.main.text"))) __main(void){
 
 	/* clear bss */
 	c = (char *)&bss_start;
+
+// comment in for simulation:
 	while (c < ((char *)&bss_end) ) { *c=0; c++; }
 	
 	/* init prom info struct */

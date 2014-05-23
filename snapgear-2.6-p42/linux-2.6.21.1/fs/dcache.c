@@ -2112,9 +2112,13 @@ void __init vfs_caches_init(unsigned long mempages)
 	dcache_init(mempages);
 	inode_init(mempages);
 	files_init(mempages);
+    printk("diaplous: dcache.c: before mnt_init\n");
 	mnt_init(mempages);
-	bdev_cache_init();
+	printk("diaplous: dcache.c: before bdev_cache_init\n");
+    bdev_cache_init();
+	printk("diaplous: dcache.c: before chrdev_init\n");
 	chrdev_init();
+    printk("diaplous: dcache.c: after chrdev_init\n");
 }
 
 EXPORT_SYMBOL(d_alloc);
