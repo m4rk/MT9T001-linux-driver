@@ -1,5 +1,7 @@
 main_prog.bin
 /sahb
+snapgear-2.6-p42.tar.bz2
+*.patch
 
 # Never ignore .gitignore files
 !.gitignore
