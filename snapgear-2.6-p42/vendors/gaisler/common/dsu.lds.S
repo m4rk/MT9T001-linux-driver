@@ -87,12 +87,12 @@ SECTIONS
 		__con_initcall_end = .;
     LINUXIMAGE (.security_initcall.init)
 
-#if (CONFIG_KERNEL_ROOTMEM_INITRAMFS == 1)
+/*#if (CONFIG_KERNEL_ROOTMEM_INITRAMFS == 1)*/
 		. = ALIGN(PAGE_SIZE);
 		__initramfs_start = .;
     LINUXIMAGE (.init.ramfs)
     __initramfs_end = .;
-#endif
+/*#endif*/
 
 		. = ALIGN(32);
 		__per_cpu_start = .;

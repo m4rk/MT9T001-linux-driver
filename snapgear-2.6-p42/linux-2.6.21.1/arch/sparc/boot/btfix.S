@@ -9,467 +9,467 @@ ___btfixup_start:
 	.global	___fs_disable_irq
 ___fs_disable_irq:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x0000ed1c,0,_stext+0x0000f938,0,_stext+0x00014a8c,0
+	.word	_stext+0x0000ed40,0,_stext+0x0000f9ac,0,_stext+0x00014b00,0
 
 	.global	___fs_disable_pil_irq
 ___fs_disable_pil_irq:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x0000ee28,0
+	.word	_stext+0x0000ee4c,0
 
 	.global	___fs_enable_pil_irq
 ___fs_enable_pil_irq:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x0000eecc,0
+	.word	_stext+0x0000ef40,0
 
 	.global	___fs_flush_cache_all
 ___fs_flush_cache_all:
 	.word 0x66000000,0,0,22
-	.word	_stext+0x0000f014,0,_stext+0x0001abd0,0,_stext+0x0001b148,0,_stext+0x0001bc60,0,_stext+0x0005507c,0,_stext+0x0005db84,0,_stext+0x0005df24,0,__init_begin+0x0000bba0,0,__init_begin+0x0000cd8c,0,__init_begin+0x0000ce74,0,__init_begin+0x0000de1c,0
+	.word	_stext+0x0000f088,0,_stext+0x0001ac30,0,_stext+0x0001b1a8,0,_stext+0x0001bcc0,0,_stext+0x000550dc,0,_stext+0x0005dbe4,0,_stext+0x0005df84,0,__init_begin+0x0000bc34,0,__init_begin+0x0000ce20,0,__init_begin+0x0000cf08,0,__init_begin+0x0000deb0,0
 
 	.global	___fs_enable_irq
 ___fs_enable_irq:
 	.word 0x66000000,0,0,8
-	.word	_stext+0x0000f03c,0,_stext+0x0000f1a4,0,_stext+0x0000fce0,0,_stext+0x00014b10,0
+	.word	_stext+0x0000f0b0,0,_stext+0x0000f218,0,_stext+0x0000fd54,0,_stext+0x00014b84,0
 
 	.global	___fs_flush_sig_insns
 ___fs_flush_sig_insns:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x00012004,0,_stext+0x0001217c,0
+	.word	_stext+0x00012078,0,_stext+0x000121f0,0
 
 	.global	___fs_sparc_mapiorange
 ___fs_sparc_mapiorange:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x0001259c,0,_stext+0x00012890,0
+	.word	_stext+0x00012610,0,_stext+0x00012904,0
 
 	.global	___fs_sparc_unmapiorange
 ___fs_sparc_unmapiorange:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x000126dc,0,_stext+0x0001299c,0
+	.word	_stext+0x00012750,0,_stext+0x00012a10,0
 
 	.global	___fs_mmu_map_dma_area
 ___fs_mmu_map_dma_area:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012cd8,0
+	.word	_stext+0x00012d4c,0
 
 	.global	___fs_mmu_translate_dvma
 ___fs_mmu_translate_dvma:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012dcc,0
+	.word	_stext+0x00012e40,0
 
 	.global	___fs_mmu_unmap_dma_area
 ___fs_mmu_unmap_dma_area:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012ddc,0
+	.word	_stext+0x00012e50,0
 
 	.global	___fs_mmu_get_scsi_one
 ___fs_mmu_get_scsi_one:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012e2c,0
+	.word	_stext+0x00012ea0,0
 
 	.global	___fs_mmu_release_scsi_one
 ___fs_mmu_release_scsi_one:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012e50,0
+	.word	_stext+0x00012ec4,0
 
 	.global	___fs_mmu_get_scsi_sgl
 ___fs_mmu_get_scsi_sgl:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012e68,0
+	.word	_stext+0x00012edc,0
 
 	.global	___fs_mmu_release_scsi_sgl
 ___fs_mmu_release_scsi_sgl:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00012e8c,0
+	.word	_stext+0x00012f00,0
 
 	.global	___fs_mmu_info
 ___fs_mmu_info:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x000131f0,0
+	.word	_stext+0x00013264,0
 
 	.global	___hs_sparc_unmapped_base
 ___hs_sparc_unmapped_base:
 	.word 0x68000000,0,14
-	.word	_stext+0x000132fc,0,_stext+0x00029600,0,_stext+0x0005a384,0,_stext+0x0005a47c,0,_stext+0x000692d8,0,_stext+0x00090924,0,_stext+0x00090bbc,0
+	.word	_stext+0x00013370,0,_stext+0x00029660,0,_stext+0x0005a3e4,0,_stext+0x0005a4dc,0,_stext+0x00069338,0,_stext+0x00090984,0,_stext+0x00090c1c,0
 
 	.global	___fs_clear_clock_irq
 ___fs_clear_clock_irq:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00014028,0
+	.word	_stext+0x0001409c,0
 
 	.global	___fs_bus_do_settimeofday
 ___fs_bus_do_settimeofday:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x000143f0,0
+	.word	_stext+0x00014464,0
 
 	.global	___fs_load_profile_irq
 ___fs_load_profile_irq:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00014b08,0
+	.word	_stext+0x00014b7c,0
 
 	.global	___ss_pgdir_shift
 ___ss_pgdir_shift:
 	.word 0x73000000,0,68
-	.word	_stext+0x00018054,0,_stext+0x00018278,0,_stext+0x00018ff0,0,_stext+0x00019be8,0,_stext+0x00019cc0,0,_stext+0x0001aaf4,0,_stext+0x0001b08c,0,_stext+0x00055760,0,_stext+0x00055e78,0,_stext+0x0005646c,0,_stext+0x000571ac,0,_stext+0x00057b0c,0,_stext+0x00057bdc,0,_stext+0x00057ce0,0,_stext+0x00057eb0,0,_stext+0x00058158,0,_stext+0x000583c4,0,_stext+0x000588a0,0,_stext+0x00058cac,0,_stext+0x0005bdd0,0,_stext+0x0005c148,0,_stext+0x0005cd9c,0,_stext+0x0005d908,0,_stext+0x0005db74,0,_stext+0x0005dd54,0,_stext+0x00093318,0,__init_begin+0x0000a53c,0,__init_begin+0x0000b8c0,0,__init_begin+0x0000bac8,0,__init_begin+0x0000bc74,0,__init_begin+0x0000be08,0,__init_begin+0x0000c014,0,__init_begin+0x0000c8e0,0,__init_begin+0x0000cdf4,0
+	.word	_stext+0x000180b4,0,_stext+0x000182d8,0,_stext+0x00019050,0,_stext+0x00019c48,0,_stext+0x00019d20,0,_stext+0x0001ab54,0,_stext+0x0001b0ec,0,_stext+0x000557c0,0,_stext+0x00055ed8,0,_stext+0x000564cc,0,_stext+0x0005720c,0,_stext+0x00057b6c,0,_stext+0x00057c3c,0,_stext+0x00057d40,0,_stext+0x00057f10,0,_stext+0x000581b8,0,_stext+0x00058424,0,_stext+0x00058900,0,_stext+0x00058d0c,0,_stext+0x0005be30,0,_stext+0x0005c1a8,0,_stext+0x0005cdfc,0,_stext+0x0005d968,0,_stext+0x0005dbd4,0,_stext+0x0005ddb4,0,_stext+0x00093378,0,__init_begin+0x0000a5d0,0,__init_begin+0x0000b954,0,__init_begin+0x0000bb5c,0,__init_begin+0x0000bd08,0,__init_begin+0x0000be9c,0,__init_begin+0x0000c0a8,0,__init_begin+0x0000c974,0,__init_begin+0x0000ce88,0
 
 	.global	___fs_pgd_present
 ___fs_pgd_present:
 	.word 0x66000000,0,0,10
-	.word	_stext+0x00018070,0,_stext+0x00018088,0,_stext+0x00057150,0,_stext+0x0005cdb0,0,_stext+0x0005d91c,0
+	.word	_stext+0x000180d0,0,_stext+0x000180e8,0,_stext+0x000571b0,0,_stext+0x0005ce10,0,_stext+0x0005d97c,0
 
 	.global	___fs_pmd_offset
 ___fs_pmd_offset:
 	.word 0x66000000,0,0,54
-	.word	_stext+0x00018158,0,_stext+0x00018168,0,_stext+0x0001905c,0,_stext+0x0001ab08,0,_stext+0x0001b0a0,0,_stext+0x000557dc,0,_stext+0x000559d8,0,_stext+0x00055f08,0,_stext+0x000564ac,0,_stext+0x000571dc,0,_stext+0x00057b34,0,_stext+0x00057d5c,0,_stext+0x00057eec,0,_stext+0x000581dc,0,_stext+0x00058474,0,_stext+0x00058488,0,_stext+0x000588d0,0,_stext+0x00058ce4,0,_stext+0x0005be50,0,_stext+0x0005c184,0,_stext+0x0005c228,0,_stext+0x0005cdd4,0,_stext+0x0005d934,0,_stext+0x0005dbe8,0,_stext+0x0005ddb8,0,_stext+0x0009338c,0,__init_begin+0x0000a550,0
+	.word	_stext+0x000181b8,0,_stext+0x000181c8,0,_stext+0x000190bc,0,_stext+0x0001ab68,0,_stext+0x0001b100,0,_stext+0x0005583c,0,_stext+0x00055a38,0,_stext+0x00055f68,0,_stext+0x0005650c,0,_stext+0x0005723c,0,_stext+0x00057b94,0,_stext+0x00057dbc,0,_stext+0x00057f4c,0,_stext+0x0005823c,0,_stext+0x000584d4,0,_stext+0x000584e8,0,_stext+0x00058930,0,_stext+0x00058d44,0,_stext+0x0005beb0,0,_stext+0x0005c1e4,0,_stext+0x0005c288,0,_stext+0x0005ce34,0,_stext+0x0005d994,0,_stext+0x0005dc48,0,_stext+0x0005de18,0,_stext+0x000933ec,0,__init_begin+0x0000a5e4,0
 
 	.global	___fs_pmd_present
 ___fs_pmd_present:
 	.word 0x66000000,0,0,30
-	.word	_stext+0x00018188,0,_stext+0x000181b0,0,_stext+0x000190bc,0,_stext+0x00055b18,0,_stext+0x00055be4,0,_stext+0x00057200,0,_stext+0x00057db8,0,_stext+0x00057f18,0,_stext+0x00058238,0,_stext+0x00058550,0,_stext+0x000586f8,0,_stext+0x0005c24c,0,_stext+0x0005cdf0,0,_stext+0x0005d954,0,_stext+0x0005de04,0
+	.word	_stext+0x000181e8,0,_stext+0x00018210,0,_stext+0x0001911c,0,_stext+0x00055b78,0,_stext+0x00055c44,0,_stext+0x00057260,0,_stext+0x00057e18,0,_stext+0x00057f78,0,_stext+0x00058298,0,_stext+0x000585b0,0,_stext+0x00058758,0,_stext+0x0005c2ac,0,_stext+0x0005ce50,0,_stext+0x0005d9b4,0,_stext+0x0005de64,0
 
 	.global	___fs_do_check_pgt_cache
 ___fs_do_check_pgt_cache:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00018dbc,0
+	.word	_stext+0x00018e1c,0
 
 	.global	___fs___flush_page_to_ram
 ___fs___flush_page_to_ram:
 	.word 0x66000000,0,0,10
-	.word	_stext+0x00018f8c,0,_stext+0x00019c60,0,_stext+0x0001a638,0,_stext+0x0001a650,0,_stext+0x0001aba4,0
+	.word	_stext+0x00018fec,0,_stext+0x00019cc0,0,_stext+0x0001a698,0,_stext+0x0001a6b0,0,_stext+0x0001ac04,0
 
 	.global	___fs_flush_cache_range
 ___fs_flush_cache_range:
 	.word 0x66000000,0,0,12
-	.word	_stext+0x0001900c,0,_stext+0x00055e6c,0,_stext+0x00057cfc,0,_stext+0x00058178,0,_stext+0x0005bdec,0,_stext+0x0005c0fc,0
+	.word	_stext+0x0001906c,0,_stext+0x00055ecc,0,_stext+0x00057d5c,0,_stext+0x000581d8,0,_stext+0x0005be4c,0,_stext+0x0005c15c,0
 
 	.global	___hs_pgdir_mask
 ___hs_pgdir_mask:
 	.word 0x68000000,0,22
-	.word	_stext+0x00019034,0,_stext+0x00055778,0,_stext+0x0005578c,0,_stext+0x00055ea4,0,_stext+0x00057d14,0,_stext+0x00058194,0,_stext+0x00058400,0,_stext+0x0005be04,0,_stext+0x0005dba0,0,_stext+0x0005dd78,0,_stext+0x00093344,0
+	.word	_stext+0x00019094,0,_stext+0x000557d8,0,_stext+0x000557ec,0,_stext+0x00055f04,0,_stext+0x00057d74,0,_stext+0x000581f4,0,_stext+0x00058460,0,_stext+0x0005be64,0,_stext+0x0005dc00,0,_stext+0x0005ddd8,0,_stext+0x000933a4,0
 
 	.global	___hs_pgdir_size
 ___hs_pgdir_size:
 	.word 0x68000000,0,22
-	.word	_stext+0x00019038,0,_stext+0x00019194,0,_stext+0x00055784,0,_stext+0x00055e9c,0,_stext+0x00057d0c,0,_stext+0x0005818c,0,_stext+0x000583f8,0,_stext+0x0005bdfc,0,_stext+0x0005db98,0,_stext+0x0005dd70,0,_stext+0x0009333c,0
+	.word	_stext+0x00019098,0,_stext+0x000191f4,0,_stext+0x000557e4,0,_stext+0x00055efc,0,_stext+0x00057d6c,0,_stext+0x000581ec,0,_stext+0x00058458,0,_stext+0x0005be5c,0,_stext+0x0005dbf8,0,_stext+0x0005ddd0,0,_stext+0x0009339c,0
 
 	.global	___fs_pgd_none
 ___fs_pgd_none:
 	.word 0x66000000,0,0,38
-	.word	_stext+0x00019044,0,_stext+0x000557a8,0,_stext+0x00055ec8,0,_stext+0x00056480,0,_stext+0x000571c8,0,_stext+0x00057b20,0,_stext+0x00057d44,0,_stext+0x00057ecc,0,_stext+0x000581c4,0,_stext+0x00058424,0,_stext+0x0005845c,0,_stext+0x000588b4,0,_stext+0x00058cbc,0,_stext+0x0005be24,0,_stext+0x0005c15c,0,_stext+0x0005c210,0,_stext+0x0005dbbc,0,_stext+0x0005dda0,0,_stext+0x00093360,0
+	.word	_stext+0x000190a4,0,_stext+0x00055808,0,_stext+0x00055f28,0,_stext+0x000564e0,0,_stext+0x00057228,0,_stext+0x00057b80,0,_stext+0x00057da4,0,_stext+0x00057f2c,0,_stext+0x00058224,0,_stext+0x00058484,0,_stext+0x000584bc,0,_stext+0x00058914,0,_stext+0x00058d1c,0,_stext+0x0005be84,0,_stext+0x0005c1bc,0,_stext+0x0005c270,0,_stext+0x0005dc1c,0,_stext+0x0005de00,0,_stext+0x000933c0,0
 
 	.global	___fs_pte_offset_kernel
 ___fs_pte_offset_kernel:
 	.word 0x66000000,0,0,58
-	.word	_stext+0x000190d4,0,_stext+0x0001ab14,0,_stext+0x0001b0a8,0,_stext+0x00055fbc,0,_stext+0x00056504,0,_stext+0x00056780,0,_stext+0x00056a78,0,_stext+0x000570a8,0,_stext+0x00057214,0,_stext+0x000573f8,0,_stext+0x00057620,0,_stext+0x000576f8,0,_stext+0x00057b60,0,_stext+0x00057dd0,0,_stext+0x00057f3c,0,_stext+0x00058254,0,_stext+0x0005856c,0,_stext+0x00058580,0,_stext+0x00058904,0,_stext+0x00058e68,0,_stext+0x0005bee0,0,_stext+0x0005c2d8,0,_stext+0x0005c2e8,0,_stext+0x0005ce08,0,_stext+0x0005d96c,0,_stext+0x0005dc6c,0,_stext+0x0005de1c,0,_stext+0x00093414,0,__init_begin+0x0000a558,0
+	.word	_stext+0x00019134,0,_stext+0x0001ab74,0,_stext+0x0001b108,0,_stext+0x0005601c,0,_stext+0x00056564,0,_stext+0x000567e0,0,_stext+0x00056ad8,0,_stext+0x00057108,0,_stext+0x00057274,0,_stext+0x00057458,0,_stext+0x00057680,0,_stext+0x00057758,0,_stext+0x00057bc0,0,_stext+0x00057e30,0,_stext+0x00057f9c,0,_stext+0x000582b4,0,_stext+0x000585cc,0,_stext+0x000585e0,0,_stext+0x00058964,0,_stext+0x00058ec8,0,_stext+0x0005bf40,0,_stext+0x0005c338,0,_stext+0x0005c348,0,_stext+0x0005ce68,0,_stext+0x0005d9cc,0,_stext+0x0005dccc,0,_stext+0x0005de7c,0,_stext+0x00093474,0,__init_begin+0x0000a5ec,0
 
 	.global	___fs_mk_pte_io
 ___fs_mk_pte_io:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00019110,0
+	.word	_stext+0x00019170,0
 
 	.global	___fs_set_pte
 ___fs_set_pte:
 	.word 0x66000000,0,0,60
-	.word	_stext+0x0001911c,0,_stext+0x0001ab40,0,_stext+0x0001b0d8,0,_stext+0x0001bc88,0,_stext+0x000549a0,0,_stext+0x00054a40,0,_stext+0x00055150,0,_stext+0x00056328,0,_stext+0x0005682c,0,_stext+0x00056938,0,_stext+0x00057118,0,_stext+0x00057310,0,_stext+0x00057470,0,_stext+0x00057580,0,_stext+0x00057e1c,0,_stext+0x00058004,0,_stext+0x00058110,0,_stext+0x000582d4,0,_stext+0x0005867c,0,_stext+0x0005876c,0,_stext+0x0005bf5c,0,_stext+0x0005c338,0,_stext+0x0005cef0,0,_stext+0x0005d220,0,_stext+0x0005d5dc,0,_stext+0x0005d62c,0,_stext+0x0005da04,0,_stext+0x0005dac8,0,_stext+0x0005de84,0,_stext+0x00068cb8,0
+	.word	_stext+0x0001917c,0,_stext+0x0001aba0,0,_stext+0x0001b138,0,_stext+0x0001bce8,0,_stext+0x00054a00,0,_stext+0x00054aa0,0,_stext+0x000551b0,0,_stext+0x00056388,0,_stext+0x0005688c,0,_stext+0x00056998,0,_stext+0x00057178,0,_stext+0x00057370,0,_stext+0x000574d0,0,_stext+0x000575e0,0,_stext+0x00057e7c,0,_stext+0x00058064,0,_stext+0x00058170,0,_stext+0x00058334,0,_stext+0x000586dc,0,_stext+0x000587cc,0,_stext+0x0005bfbc,0,_stext+0x0005c398,0,_stext+0x0005cf50,0,_stext+0x0005d280,0,_stext+0x0005d63c,0,_stext+0x0005d68c,0,_stext+0x0005da64,0,_stext+0x0005db28,0,_stext+0x0005dee4,0,_stext+0x00068d18,0
 
 	.global	___fs_flush_tlb_range
 ___fs_flush_tlb_range:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x000191e4,0,_stext+0x000560ec,0,_stext+0x0005bb40,0
+	.word	_stext+0x00019244,0,_stext+0x0005614c,0,_stext+0x0005bba0,0
 
 	.global	___ss_ptrs_per_pmd
 ___ss_ptrs_per_pmd:
 	.word 0x73000000,0,18
-	.word	_stext+0x00019598,0,_stext+0x00019bc0,0,_stext+0x00019cac,0,__init_begin+0x0000b854,0,__init_begin+0x0000baac,0,__init_begin+0x0000bbd0,0,__init_begin+0x0000be80,0,__init_begin+0x0000c958,0,__init_begin+0x0000ce3c,0
+	.word	_stext+0x000195f8,0,_stext+0x00019c20,0,_stext+0x00019d0c,0,__init_begin+0x0000b8e8,0,__init_begin+0x0000bb40,0,__init_begin+0x0000bc64,0,__init_begin+0x0000bf14,0,__init_begin+0x0000c9ec,0,__init_begin+0x0000ced0,0
 
 	.global	___ss_user_ptrs_per_pgd
 ___ss_user_ptrs_per_pgd:
 	.word 0x73000000,0,4
-	.word	_stext+0x00019880,0,_stext+0x0001d890,0
+	.word	_stext+0x000198e0,0,_stext+0x0001d8f0,0
 
 	.global	___ss_ptrs_per_pgd
 ___ss_ptrs_per_pgd:
 	.word 0x73000000,0,4
-	.word	_stext+0x000198a4,0,_stext+0x0001d894,0
+	.word	_stext+0x00019904,0,_stext+0x0001d8f4,0
 
 	.global	___fs_flush_tlb_mm
 ___fs_flush_tlb_mm:
 	.word 0x66000000,0,0,18
-	.word	_stext+0x00019a44,0,_stext+0x00019af4,0,_stext+0x00019b48,0,_stext+0x0001a1c0,0,_stext+0x0002a240,0,_stext+0x000563a0,0,_stext+0x0005644c,0,_stext+0x0005a7f0,0,_stext+0x0005b740,0
+	.word	_stext+0x00019aa4,0,_stext+0x00019b54,0,_stext+0x00019ba8,0,_stext+0x0001a220,0,_stext+0x0002a2a0,0,_stext+0x00056400,0,_stext+0x000564ac,0,_stext+0x0005a850,0,_stext+0x0005b7a0,0
 
 	.global	___fs_flush_cache_mm
 ___fs_flush_cache_mm:
 	.word 0x66000000,0,0,8
-	.word	_stext+0x00019b40,0,_stext+0x0001a170,0,_stext+0x0002a060,0,_stext+0x0005b690,0
+	.word	_stext+0x00019ba0,0,_stext+0x0001a1d0,0,_stext+0x0002a0c0,0,_stext+0x0005b6f0,0
 
 	.global	___fs_flush_tlb_all
 ___fs_flush_tlb_all:
 	.word 0x66000000,0,0,24
-	.word	_stext+0x00019c7c,0,_stext+0x00019d38,0,_stext+0x0001abe4,0,_stext+0x0001ac68,0,_stext+0x0001b150,0,_stext+0x0001bc90,0,_stext+0x00055114,0,_stext+0x0005dd1c,0,__init_begin+0x0000bba8,0,__init_begin+0x0000cda8,0,__init_begin+0x0000ce7c,0,__init_begin+0x0000de24,0
+	.word	_stext+0x00019cdc,0,_stext+0x00019d98,0,_stext+0x0001ac44,0,_stext+0x0001acc8,0,_stext+0x0001b1b0,0,_stext+0x0001bcf0,0,_stext+0x00055174,0,_stext+0x0005dd7c,0,__init_begin+0x0000bc3c,0,__init_begin+0x0000ce3c,0,__init_begin+0x0000cf10,0,__init_begin+0x0000deb8,0
 
 	.global	___fs_flush_page_for_dma
 ___fs_flush_page_for_dma:
 	.word 0x66000000,0,0,8
-	.word	_stext+0x0001a794,0,_stext+0x0001a7c0,0,_stext+0x0001a844,0,_stext+0x0001a930,0
+	.word	_stext+0x0001a7f4,0,_stext+0x0001a820,0,_stext+0x0001a8a4,0,_stext+0x0001a990,0
 
 	.global	___fs_mk_pte
 ___fs_mk_pte:
 	.word 0x66000000,0,0,32
-	.word	_stext+0x0001ab34,0,_stext+0x0001b0cc,0,_stext+0x0001bc70,0,_stext+0x00054990,0,_stext+0x0005513c,0,_stext+0x000567e8,0,_stext+0x000570e0,0,_stext+0x00057434,0,_stext+0x0005754c,0,_stext+0x000576c8,0,_stext+0x00057e10,0,_stext+0x00057ff4,0,_stext+0x00058104,0,_stext+0x00058274,0,_stext+0x0005de78,0,_stext+0x00068c9c,0
+	.word	_stext+0x0001ab94,0,_stext+0x0001b12c,0,_stext+0x0001bcd0,0,_stext+0x000549f0,0,_stext+0x0005519c,0,_stext+0x00056848,0,_stext+0x00057140,0,_stext+0x00057494,0,_stext+0x000575ac,0,_stext+0x00057728,0,_stext+0x00057e70,0,_stext+0x00058054,0,_stext+0x00058164,0,_stext+0x000582d4,0,_stext+0x0005ded8,0,_stext+0x00068cfc,0
 
 	.global	___fs_pte_pfn
 ___fs_pte_pfn:
 	.word 0x66000000,0,0,10
-	.word	_stext+0x0001bd68,0,_stext+0x000550cc,0,_stext+0x00055c74,0,_stext+0x00058924,0,_stext+0x0005ce40,0
+	.word	_stext+0x0001bdc8,0,_stext+0x0005512c,0,_stext+0x00055cd4,0,_stext+0x00058984,0,_stext+0x0005cea0,0
 
 	.global	___fs_sun4c_flush_page
 ___fs_sun4c_flush_page:
 	.word 0x66000000,0,0,24
-	.word	_stext+0x0001bfac,0,_stext+0x0001c5b4,0,_stext+0x0001c5bc,0,_stext+0x0001c674,0,_stext+0x0001c680,0,_stext+0x0001c890,0,_stext+0x0001ca74,0,_stext+0x0001ce00,0,_stext+0x0001cecc,0,_stext+0x0001cf08,0,_stext+0x0001d22c,0,__init_begin+0x0000f248,0
+	.word	_stext+0x0001c00c,0,_stext+0x0001c614,0,_stext+0x0001c61c,0,_stext+0x0001c6d4,0,_stext+0x0001c6e0,0,_stext+0x0001c8f0,0,_stext+0x0001cad4,0,_stext+0x0001ce60,0,_stext+0x0001cf2c,0,_stext+0x0001cf68,0,_stext+0x0001d28c,0,__init_begin+0x0000f2dc,0
 
 	.global	___fs_sun4c_flush_context
 ___fs_sun4c_flush_context:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x0001c1a4,0,_stext+0x0001cca0,0,_stext+0x0001d060,0
+	.word	_stext+0x0001c204,0,_stext+0x0001cd00,0,_stext+0x0001d0c0,0
 
 	.global	___fs_sun4c_flush_segment
 ___fs_sun4c_flush_segment:
 	.word 0x66000000,0,0,12
-	.word	_stext+0x0001c2a4,0,_stext+0x0001c344,0,_stext+0x0001c4d0,0,_stext+0x0001ce4c,0,_stext+0x0001cf68,0,_stext+0x0001d180,0
+	.word	_stext+0x0001c304,0,_stext+0x0001c3a4,0,_stext+0x0001c530,0,_stext+0x0001ceac,0,_stext+0x0001cfc8,0,_stext+0x0001d1e0,0
 
 	.global	___fs_free_thread_info
 ___fs_free_thread_info:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00029498,0
+	.word	_stext+0x000294f8,0
 
 	.global	___fs_get_pgd_fast
 ___fs_get_pgd_fast:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00029618,0
+	.word	_stext+0x00029678,0
 
 	.global	___fs_free_pgd_fast
 ___fs_free_pgd_fast:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x000296a8,0
+	.word	_stext+0x00029708,0
 
 	.global	___fs_destroy_context
 ___fs_destroy_context:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x000296b0,0
+	.word	_stext+0x00029710,0
 
 	.global	___fs_alloc_thread_info
 ___fs_alloc_thread_info:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00029cf4,0
+	.word	_stext+0x00029d54,0
 
 	.global	___fs____xchg32
 ___fs____xchg32:
 	.word 0x66000000,0,0,26
-	.word	_stext+0x0002d5e8,0,_stext+0x0002ec50,0,_stext+0x0002eefc,0,_stext+0x00033708,0,_stext+0x0003b5cc,0,_stext+0x00042688,0,_stext+0x00047400,0,_stext+0x00047454,0,_stext+0x000e7970,0,_stext+0x000e7a84,0,_stext+0x0007b8d0,0,_stext+0x0007c0a4,0,_stext+0x000b7ef4,0
+	.word	_stext+0x0002d648,0,_stext+0x0002ecb0,0,_stext+0x0002ef5c,0,_stext+0x00033768,0,_stext+0x0003b62c,0,_stext+0x000426e8,0,_stext+0x00047460,0,_stext+0x000474b4,0,_stext+0x000e79d0,0,_stext+0x000e7ae4,0,_stext+0x0007b930,0,_stext+0x0007c104,0,_stext+0x000b7f54,0
 
 	.global	___fs_switch_mm
 ___fs_switch_mm:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x000e67ec,0,_stext+0x000692b8,0,_stext+0x0007de10,0
+	.word	_stext+0x000e684c,0,_stext+0x00069318,0,_stext+0x0007de70,0
 
 	.global	___fs_pte_present
 ___fs_pte_present:
 	.word 0x66000000,0,0,24
-	.word	_stext+0x00054804,0,_stext+0x0005601c,0,_stext+0x0005651c,0,_stext+0x0005722c,0,_stext+0x000585d4,0,_stext+0x00058910,0,_stext+0x00058e7c,0,_stext+0x0005bf08,0,_stext+0x0005ce14,0,_stext+0x0005d9a0,0,_stext+0x0005dcac,0,_stext+0x0009343c,0
+	.word	_stext+0x00054864,0,_stext+0x0005607c,0,_stext+0x0005657c,0,_stext+0x0005728c,0,_stext+0x00058634,0,_stext+0x00058970,0,_stext+0x00058edc,0,_stext+0x0005bf68,0,_stext+0x0005ce74,0,_stext+0x0005da00,0,_stext+0x0005dd0c,0,_stext+0x0009349c,0
 
 	.global	___as_pte_filei
 ___as_pte_filei:
 	.word 0x61000000,0,12
-	.word	_stext+0x0005481c,0,_stext+0x00056038,0,_stext+0x00057250,0,_stext+0x0005877c,0,_stext+0x00058ea0,0,_stext+0x0005d620,0
+	.word	_stext+0x0005487c,0,_stext+0x00056098,0,_stext+0x000572b0,0,_stext+0x000587dc,0,_stext+0x00058f00,0,_stext+0x0005d680,0
 
 	.global	___fs_pte_clear
 ___fs_pte_clear:
 	.word 0x66000000,0,0,24
-	.word	_stext+0x00054830,0,_stext+0x00054864,0,_stext+0x000550f4,0,_stext+0x00056048,0,_stext+0x000561e4,0,_stext+0x00056814,0,_stext+0x0005bf20,0,_stext+0x0005c320,0,_stext+0x0005d1fc,0,_stext+0x0005d56c,0,_stext+0x0005da84,0,_stext+0x0005dc90,0
+	.word	_stext+0x00054890,0,_stext+0x000548c4,0,_stext+0x00055154,0,_stext+0x000560a8,0,_stext+0x00056244,0,_stext+0x00056874,0,_stext+0x0005bf80,0,_stext+0x0005c380,0,_stext+0x0005d25c,0,_stext+0x0005d5cc,0,_stext+0x0005dae4,0,_stext+0x0005dcf0,0
 
 	.global	___fs___swp_type
 ___fs___swp_type:
 	.word 0x66000000,0,0,10
-	.word	_stext+0x00054840,0,_stext+0x00056248,0,_stext+0x000575e0,0,_stext+0x00058790,0,_stext+0x00058f0c,0
+	.word	_stext+0x000548a0,0,_stext+0x000562a8,0,_stext+0x00057640,0,_stext+0x000587f0,0,_stext+0x00058f6c,0
 
 	.global	___fs___swp_offset
 ___fs___swp_offset:
 	.word 0x66000000,0,0,10
-	.word	_stext+0x0005484c,0,_stext+0x00056254,0,_stext+0x000575f0,0,_stext+0x0005879c,0,_stext+0x00058f18,0
+	.word	_stext+0x000548ac,0,_stext+0x000562b4,0,_stext+0x00057650,0,_stext+0x000587fc,0,_stext+0x00058f78,0
 
 	.global	___fs_flush_cache_page
 ___fs_flush_cache_page:
 	.word 0x66000000,0,0,18
-	.word	_stext+0x00054858,0,_stext+0x000567dc,0,_stext+0x00056900,0,_stext+0x000589e4,0,_stext+0x00058b04,0,_stext+0x0005d1f0,0,_stext+0x0005d560,0,_stext+0x0005da74,0,_stext+0x00092c38,0
+	.word	_stext+0x000548b8,0,_stext+0x0005683c,0,_stext+0x00056960,0,_stext+0x00058a44,0,_stext+0x00058b64,0,_stext+0x0005d250,0,_stext+0x0005d5c0,0,_stext+0x0005dad4,0,_stext+0x00092c98,0
 
 	.global	___fs_flush_tlb_page
 ___fs_flush_tlb_page:
 	.word 0x66000000,0,0,24
-	.word	_stext+0x00054870,0,_stext+0x00056820,0,_stext+0x00056944,0,_stext+0x0005731c,0,_stext+0x000574ec,0,_stext+0x0005c32c,0,_stext+0x0005cefc,0,_stext+0x0005d208,0,_stext+0x0005d578,0,_stext+0x0005d5e8,0,_stext+0x0005da10,0,_stext+0x0005da90,0
+	.word	_stext+0x000548d0,0,_stext+0x00056880,0,_stext+0x000569a4,0,_stext+0x0005737c,0,_stext+0x0005754c,0,_stext+0x0005c38c,0,_stext+0x0005cf5c,0,_stext+0x0005d268,0,_stext+0x0005d5d8,0,_stext+0x0005d648,0,_stext+0x0005da70,0,_stext+0x0005daf0,0
 
 	.global	___as_pte_dirtyi
 ___as_pte_dirtyi:
 	.word 0x61000000,0,16
-	.word	_stext+0x0005488c,0,_stext+0x00056260,0,_stext+0x0005659c,0,_stext+0x0005bf38,0,_stext+0x0005d1cc,0,_stext+0x0005d580,0,_stext+0x0005dad4,0,_stext+0x00093338,0
+	.word	_stext+0x000548ec,0,_stext+0x000562c0,0,_stext+0x000565fc,0,_stext+0x0005bf98,0,_stext+0x0005d22c,0,_stext+0x0005d5e0,0,_stext+0x0005db34,0,_stext+0x00093398,0
 
 	.global	___hs_none_mask
 ___hs_none_mask:
 	.word 0x68000000,0,58
-	.word	_stext+0x0005495c,0,_stext+0x00054a14,0,_stext+0x000550a8,0,_stext+0x00055840,0,_stext+0x00055f80,0,_stext+0x00056004,0,_stext+0x000564d0,0,_stext+0x000570b4,0,_stext+0x00057240,0,_stext+0x00057420,0,_stext+0x00057558,0,_stext+0x00057704,0,_stext+0x00057924,0,_stext+0x00057d78,0,_stext+0x00057fbc,0,_stext+0x000580bc,0,_stext+0x0005828c,0,_stext+0x00058508,0,_stext+0x000585c4,0,_stext+0x000588f0,0,_stext+0x00058d04,0,_stext+0x00058e8c,0,_stext+0x0005bea8,0,_stext+0x0005c118,0,_stext+0x0005c1a4,0,_stext+0x0005db94,0,_stext+0x0005de4c,0,_stext+0x00068c54,0,_stext+0x000933e0,0
+	.word	_stext+0x000549bc,0,_stext+0x00054a74,0,_stext+0x00055108,0,_stext+0x000558a0,0,_stext+0x00055fe0,0,_stext+0x00056064,0,_stext+0x00056530,0,_stext+0x00057114,0,_stext+0x000572a0,0,_stext+0x00057480,0,_stext+0x000575b8,0,_stext+0x00057764,0,_stext+0x00057984,0,_stext+0x00057dd8,0,_stext+0x0005801c,0,_stext+0x0005811c,0,_stext+0x000582ec,0,_stext+0x00058568,0,_stext+0x00058624,0,_stext+0x00058950,0,_stext+0x00058d64,0,_stext+0x00058eec,0,_stext+0x0005bf08,0,_stext+0x0005c178,0,_stext+0x0005c204,0,_stext+0x0005dbf4,0,_stext+0x0005deac,0,_stext+0x00068cb4,0,_stext+0x00093440,0
 
 	.global	___fs_update_mmu_cache
 ___fs_update_mmu_cache:
 	.word 0x66000000,0,0,14
-	.word	_stext+0x000549b8,0,_stext+0x0005683c,0,_stext+0x00056954,0,_stext+0x0005732c,0,_stext+0x000574b0,0,_stext+0x00057590,0,_stext+0x00058014,0
+	.word	_stext+0x00054a18,0,_stext+0x0005689c,0,_stext+0x000569b4,0,_stext+0x0005738c,0,_stext+0x00057510,0,_stext+0x000575f0,0,_stext+0x00058074,0
 
 	.global	___fs_pgoff_to_pte
 ___fs_pgoff_to_pte:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x00054a34,0,_stext+0x0005631c,0,_stext+0x0005dabc,0
+	.word	_stext+0x00054a94,0,_stext+0x0005637c,0,_stext+0x0005db1c,0
 
 	.global	___fs_pgd_clear
 ___fs_pgd_clear:
 	.word 0x66000000,0,0,6
-	.word	_stext+0x000556e4,0,_stext+0x000559b4,0,_stext+0x000559e4,0
+	.word	_stext+0x00055744,0,_stext+0x00055a14,0,_stext+0x00055a44,0
 
 	.global	___fs_pgd_bad
 ___fs_pgd_bad:
 	.word 0x66000000,0,0,18
-	.word	_stext+0x000557bc,0,_stext+0x00055ee0,0,_stext+0x00056498,0,_stext+0x0005843c,0,_stext+0x00058cd0,0,_stext+0x0005be38,0,_stext+0x0005c170,0,_stext+0x0005dbd0,0,_stext+0x00093374,0
+	.word	_stext+0x0005581c,0,_stext+0x00055f40,0,_stext+0x000564f8,0,_stext+0x0005849c,0,_stext+0x00058d30,0,_stext+0x0005be98,0,_stext+0x0005c1d0,0,_stext+0x0005dc30,0,_stext+0x000933d4,0
 
 	.global	___fs_pmd_bad
 ___fs_pmd_bad:
 	.word 0x66000000,0,0,18
-	.word	_stext+0x00055860,0,_stext+0x00055fa0,0,_stext+0x000564f0,0,_stext+0x00058528,0,_stext+0x00058e54,0,_stext+0x0005bec8,0,_stext+0x0005c1dc,0,_stext+0x0005dc58,0,_stext+0x00093400,0
+	.word	_stext+0x000558c0,0,_stext+0x00056000,0,_stext+0x00056550,0,_stext+0x00058588,0,_stext+0x00058eb4,0,_stext+0x0005bf28,0,_stext+0x0005c23c,0,_stext+0x0005dcb8,0,_stext+0x00093460,0
 
 	.global	___fs_pmd_page
 ___fs_pmd_page:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055884,0
+	.word	_stext+0x000558e4,0
 
 	.global	___fs_pmd_clear
 ___fs_pmd_clear:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055890,0
+	.word	_stext+0x000558f0,0
 
 	.global	___fs_pte_free
 ___fs_pte_free:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x000558a0,0,_stext+0x00055b2c,0
+	.word	_stext+0x00055900,0,_stext+0x00055b8c,0
 
 	.global	___fs_free_pmd_fast
 ___fs_free_pmd_fast:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x000559f4,0,_stext+0x00057168,0
+	.word	_stext+0x00055a54,0,_stext+0x000571c8,0
 
 	.global	___fs_pte_alloc_one
 ___fs_pte_alloc_one:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055ae4,0
+	.word	_stext+0x00055b44,0
 
 	.global	___fs_pmd_populate
 ___fs_pmd_populate:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055b90,0
+	.word	_stext+0x00055bf0,0
 
 	.global	___fs_pte_alloc_one_kernel
 ___fs_pte_alloc_one_kernel:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055bb0,0
+	.word	_stext+0x00055c10,0
 
 	.global	___fs_free_pte_fast
 ___fs_free_pte_fast:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055bfc,0
+	.word	_stext+0x00055c5c,0
 
 	.global	___fs_pmd_set
 ___fs_pmd_set:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00055c0c,0
+	.word	_stext+0x00055c6c,0
 
 	.global	___as_pte_youngi
 ___as_pte_youngi:
 	.word 0x61000000,0,8
-	.word	_stext+0x00056270,0,_stext+0x0005cec0,0,_stext+0x0005d54c,0,_stext+0x0005d9ec,0
+	.word	_stext+0x000562d0,0,_stext+0x0005cf20,0,_stext+0x0005d5ac,0,_stext+0x0005da4c,0
 
 	.global	___as_pte_writei
 ___as_pte_writei:
 	.word 0x61000000,0,6
-	.word	_stext+0x00056538,0,_stext+0x000572dc,0,_stext+0x0005d1dc,0
+	.word	_stext+0x00056598,0,_stext+0x0005733c,0,_stext+0x0005d23c,0
 
 	.global	___fs_pte_mkdirty
 ___fs_pte_mkdirty:
 	.word 0x66000000,0,0,14
-	.word	_stext+0x000567f0,0,_stext+0x00056910,0,_stext+0x000570f4,0,_stext+0x000572ec,0,_stext+0x00057448,0,_stext+0x000576d0,0,_stext+0x00068cac,0
+	.word	_stext+0x00056850,0,_stext+0x00056970,0,_stext+0x00057154,0,_stext+0x0005734c,0,_stext+0x000574a8,0,_stext+0x00057730,0,_stext+0x00068d0c,0
 
 	.global	___fs_pte_mkwrite
 ___fs_pte_mkwrite:
 	.word 0x66000000,0,0,14
-	.word	_stext+0x00056808,0,_stext+0x00056928,0,_stext+0x0005710c,0,_stext+0x00057460,0,_stext+0x000576e8,0,_stext+0x0005bf50,0,_stext+0x00068ca4,0
+	.word	_stext+0x00056868,0,_stext+0x00056988,0,_stext+0x0005716c,0,_stext+0x000574c0,0,_stext+0x00057748,0,_stext+0x0005bfb0,0,_stext+0x00068d04,0
 
 	.global	___fs_pte_mkyoung
 ___fs_pte_mkyoung:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x00056908,0,_stext+0x000572f8,0
+	.word	_stext+0x00056968,0,_stext+0x00057358,0
 
 	.global	___fs_pmd_alloc_one
 ___fs_pmd_alloc_one:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x0005713c,0
+	.word	_stext+0x0005719c,0
 
 	.global	___fs_pgd_set
 ___fs_pgd_set:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x00057178,0
+	.word	_stext+0x000571d8,0
 
 	.global	___fs_pte_to_pgoff
 ___fs_pte_to_pgoff:
 	.word 0x66000000,0,0,4
-	.word	_stext+0x00057270,0,_stext+0x00058ee8,0
+	.word	_stext+0x000572d0,0,_stext+0x00058f48,0
 
 	.global	___as_pte_wrprotecti
 ___as_pte_wrprotecti:
 	.word 0x61000000,0,6
-	.word	_stext+0x00058280,0,_stext+0x00058760,0,_stext+0x0005d210,0
+	.word	_stext+0x000582e0,0,_stext+0x000587c0,0,_stext+0x0005d270,0
 
 	.global	___as_pte_mkcleani
 ___as_pte_mkcleani:
 	.word 0x61000000,0,4
-	.word	_stext+0x00058604,0,_stext+0x0005d218,0
+	.word	_stext+0x00058664,0,_stext+0x0005d278,0
 
 	.global	___as_pte_mkoldi
 ___as_pte_mkoldi:
 	.word 0x61000000,0,8
-	.word	_stext+0x0005860c,0,_stext+0x0005ced0,0,_stext+0x0005d5d8,0,_stext+0x0005da00,0
+	.word	_stext+0x0005866c,0,_stext+0x0005cf30,0,_stext+0x0005d638,0,_stext+0x0005da60,0
 
 	.global	___is_pte_modify_mask
 ___is_pte_modify_mask:
 	.word 0x69000000,0,4
-	.word	_stext+0x0005beec,0,_stext+0x0005bef4,0
+	.word	_stext+0x0005bf4c,0,_stext+0x0005bf54,0
 
 	.global	___fs___swp_entry
 ___fs___swp_entry:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x0005d610,0
+	.word	_stext+0x0005d670,0
 
 	.global	___is_page_kernel
 ___is_page_kernel:
 	.word 0x69000000,0,32
-	.word	_stext+0x0005e42c,0,_stext+0x0005e430,0,_stext+0x0005e5e0,0,_stext+0x0005e5e4,0,_stext+0x0005e604,0,_stext+0x0005e614,0,_stext+0x0005e644,0,_stext+0x0005e648,0,_stext+0x0005e660,0,_stext+0x0005e664,0,_stext+0x0005e67c,0,_stext+0x0005e680,0,_stext+0x0005e6a0,0,_stext+0x0005e6b0,0,__init_begin+0x000132d4,0,__init_begin+0x00013430,0
+	.word	_stext+0x0005e48c,0,_stext+0x0005e490,0,_stext+0x0005e640,0,_stext+0x0005e644,0,_stext+0x0005e664,0,_stext+0x0005e674,0,_stext+0x0005e6a4,0,_stext+0x0005e6a8,0,_stext+0x0005e6c0,0,_stext+0x0005e6c4,0,_stext+0x0005e6dc,0,_stext+0x0005e6e0,0,_stext+0x0005e700,0,_stext+0x0005e710,0,__init_begin+0x00013368,0,__init_begin+0x000134c4,0
 
 	.global	___fs_pgprot_noncached
 ___fs_pgprot_noncached:
 	.word 0x66000000,0,0,2
-	.word	_stext+0x000b8bd8,0
+	.word	_stext+0x000b8c38,0
 
 	.global	___is_page_copy
 ___is_page_copy:
 	.word 0x69000000,0,8
-	.word	_stext+0x000b92a4,0,_stext+0x000b92b8,0,__init_begin+0x0000aa40,0,__init_begin+0x0000aa54,0
+	.word	_stext+0x000b9304,0,_stext+0x000b9318,0,__init_begin+0x0000aad4,0,__init_begin+0x0000aae8,0
 
 	.global	___fs_sbint_to_irq
 ___fs_sbint_to_irq:
 	.word 0x66000000,0,0,2
-	.word	__init_begin+0x00007c44,0
+	.word	__init_begin+0x00007cdc,0
 
 	.global	___fs_clear_profile_irq
 ___fs_clear_profile_irq:
@@ -478,17 +478,17 @@ ___fs_clear_profile_irq:
 	.global	___is_page_readonly
 ___is_page_readonly:
 	.word 0x69000000,0,4
-	.word	__init_begin+0x0000aa3c,0,__init_begin+0x0000aa50,0
+	.word	__init_begin+0x0000aad0,0,__init_begin+0x0000aae4,0
 
 	.global	___is_page_shared
 ___is_page_shared:
 	.word 0x69000000,0,8
-	.word	__init_begin+0x0000aa44,0,__init_begin+0x0000aa58,0,__init_begin+0x0000ef68,0,__init_begin+0x0000ef6c,0
+	.word	__init_begin+0x0000aad8,0,__init_begin+0x0000aaec,0,__init_begin+0x0000effc,0,__init_begin+0x0000f000,0
 
 	.global	___is_page_none
 ___is_page_none:
 	.word 0x69000000,0,4
-	.word	__init_begin+0x0000aa48,0,__init_begin+0x0000aa5c,0
+	.word	__init_begin+0x0000aadc,0,__init_begin+0x0000aaf0,0
 
 	.global	___fs_pgd_page_vaddr
 ___fs_pgd_page_vaddr:
