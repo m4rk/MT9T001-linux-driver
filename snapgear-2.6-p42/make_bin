@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Run after make to create binary file for uploading to board
+sparc-linux-objcopy -O binary images/image.dsu images/image.bin
