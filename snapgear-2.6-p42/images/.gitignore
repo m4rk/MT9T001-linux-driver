@@ -1,0 +1,5 @@
+#Ignore all images but keep dsu and bin
+/progs/
+image*
+!image.dsu
+!image.bin

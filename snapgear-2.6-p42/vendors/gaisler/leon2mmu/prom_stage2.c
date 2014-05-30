@@ -101,7 +101,7 @@ static struct leon_prom_info spi = {
 		0
 	},
 	{
-	  38400, 38400
+	  115200, 115200
 	},
 	{
 	  {__va(spi.s_device_type), __va(spi.s_idprom), 4},
@@ -202,7 +202,7 @@ static struct leon_prom_info spi = {
    CONFIG_KERNEL_INIT_PATH
 };
 
-#ifdef CONFIG_KERNEL_ROOTMEM_ROMFS
+/*#if (CONFIG_KERNEL_ROOTMEM_ROMFS == 1)*/
 /* from arch/sparc/kernel/setup.c */
 #define RAMDISK_LOAD_FLAG 0x4000
 extern unsigned short root_flags;
@@ -213,7 +213,7 @@ extern unsigned int sparc_ramdisk_size;
 extern int root_mountflags;
 
 extern char initrd_end, initrd_start;
-#endif
+/*#endif*/
 
 //static spinlock_t con_lock = SPIN_LOCK_UNLOCKED;
 

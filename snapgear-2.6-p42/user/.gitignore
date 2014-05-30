@@ -1,0 +1,7 @@
+# For now ignore everything but the busybox configuration
+custom/
+ping/
+portmap/
+route/
+sash/
+version/

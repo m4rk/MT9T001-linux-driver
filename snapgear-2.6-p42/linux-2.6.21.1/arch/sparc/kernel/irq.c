@@ -354,6 +354,7 @@ void handler_irq(int irq, struct pt_regs * regs)
 		smp4m_irq_rotate(cpu);
 #endif
 	
+/* Uncomment to debug
     if (irq == 8) {
         irq8_cnt++;
         if ((irq8_cnt%1000)==0) 
@@ -361,6 +362,7 @@ void handler_irq(int irq, struct pt_regs * regs)
     } else {
         printk("diaplous : handler_irq no:%d\n", irq);
     }
+*/
     action = sparc_irq[irq].action;
 	sparc_irq[irq].flags |= SPARC_IRQ_INPROGRESS;
 	kstat_cpu(cpu).irqs[irq]++;

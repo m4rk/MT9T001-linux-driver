@@ -1,14 +1,16 @@
 *.a
 *.o
 *.out
-config.*
+*.tk
+*.in
+*.swp
 .config.old
 .oldconfig
 
-config/
-lib/
-user/
-romfs/
-images/
+/config/scripts
+/lib/
+/romfs/
 
+# Never ignore .gitignore file
 !.gitignore
+
