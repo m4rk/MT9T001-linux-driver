@@ -11,6 +11,7 @@
 /config/scripts
 /lib/
 /romfs/
+/images/
 
 # Never ignore .gitignore file
 !.gitignore
