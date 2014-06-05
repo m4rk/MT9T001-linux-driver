@@ -6,6 +6,7 @@
 *.swp
 .config.old
 .oldconfig
+*.log
 
 /config/scripts
 /lib/

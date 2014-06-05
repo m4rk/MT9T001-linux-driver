@@ -27,6 +27,7 @@ Module.symvers
 linux
 initramfs-root.txt
 !.gitignore
+!.config
 
 #
 # Generated include files
