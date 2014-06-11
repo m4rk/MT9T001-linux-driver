@@ -107,6 +107,7 @@
 *.o.*
 *.a
 *.s
+*.h
 Kbuild
 Config.in
 
