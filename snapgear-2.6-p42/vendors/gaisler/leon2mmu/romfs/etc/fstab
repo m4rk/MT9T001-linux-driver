@@ -1,0 +1,3 @@
+# NFS mount point and options
+# <fs>							<mountpoint>	<type>	<opts>	<dump/pass>
+10.21.30.49:/localdisk/local_users/orfanosm/nfs /home/nfs nfs rw,async 0 0

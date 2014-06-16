@@ -4,4 +4,7 @@
 # System initialization (runs when system boots).
 ::sysinit:/etc/init.d/rcS
 
-::respawn:/bin/sh
+# Get us a non-login interactive shell at a controlling tty
+# with job control. ATM sh is a symlink to BASH.
+# If any of busybox's shell are present, sh is a symlink to them
+ttyS0::respawn:-/bin/sh

@@ -1,0 +1,3 @@
+# Bash specific file - Delete sends Del instead of ~
+set editing-mode emacs
+"\e[3~":delete-char
