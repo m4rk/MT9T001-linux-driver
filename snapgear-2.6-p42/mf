@@ -1,0 +1,4 @@
+# Clean, Compile, Create image.bin
+make image
+./make_bin
+echo "make_bin: image.bin created succesfully!\n"
