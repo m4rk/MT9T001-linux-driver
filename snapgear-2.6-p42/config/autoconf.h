@@ -5,7 +5,7 @@
 /*
  * Core Applications
  */
-#define CONFIG_USER_CUSTOM 1
+#undef  CONFIG_USER_CUSTOM
 #undef  CONFIG_USER_CANTEST
 #undef  CONFIG_USER_MODULE_INIT_TOOLS
 #undef  CONFIG_USER_INIT_INIT
