@@ -101,7 +101,8 @@ static struct leon_prom_info spi = {
 		0
 	},
 	{
-	  115200, 115200
+	  38400, 38400
+	  //115200, 115200
 	},
 	{
 	  {__va(spi.s_device_type), __va(spi.s_idprom), 4},
