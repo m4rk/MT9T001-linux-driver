@@ -4,6 +4,10 @@
 
 menu "Multimedia devices"
 
+config VIDEO_CEID_CAMERA
+	tristate "CEID Camera - MT9T001 sensor driver"
+	default m
+
 config VIDEO_DEV
 	tristate "Video For Linux"
 	---help---
