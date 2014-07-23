@@ -31,23 +31,25 @@ static struct file_operations fops =
 static int __init ceid_camera_init(void)
 {
 	printk(KERN_ALERT "CEID_CAM: Module loaded\n");
-	
 	printk(KERN_ALERT "CEID_CAM: Device registration -> ");
-	if(alloc_chrdev_region(&dev_num, 0, 1, "ceidCam") < 0)
+	
+	if(alloc_chrdev_region(&dev_num, 0, 1, "ceidCam") < 0){
 		printk("failed!\n");
-	else
-	{
+	} else {
 		printk("succeded!\n");
 		printk(KERN_ALERT "CEID_CAM: <Major, Minor>: <%d, %d>\n", MAJOR(dev_num), MINOR(dev_num));
 	}
+
 	// create device class
 	printk(KERN_ALERT "CEID_CAM: class_create -> ");
+
 	if((cl = class_create(THIS_MODULE, "media") == NULL))
 		printk("failed\n");
 	else
 		printk("succeded \n");
 
 	printk(KERN_ALERT "CEID_CAM: device_create -> ");
+
 	if(device_create(cl,NULL,dev_num,NULL,"ceidCam") == NULL)
 		printk("failed\n");
 	else
@@ -56,6 +58,7 @@ static int __init ceid_camera_init(void)
 	cdev_init(&c_dev, &fops);
 
 	printk(KERN_ALERT "CEID_CAM: cdev_add -> ");
+
 	if(cdev_add(&c_dev,dev_num,1) == -1)
 		printk("failed\n");
 	else
