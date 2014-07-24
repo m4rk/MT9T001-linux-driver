@@ -13,6 +13,9 @@
 /romfs/
 /images/
 
+# Ignore helper symlinks
+driver
+
 # Never ignore .gitignore file
 !.gitignore
 
