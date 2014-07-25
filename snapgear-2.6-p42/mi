@@ -1,4 +1,5 @@
 # Clean, Compile, Create image.bin
+./clean_ceidCam
 make
 ./make_bin
 echo "make_bin: image.bin created succesfully!\n"
