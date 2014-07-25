@@ -8,7 +8,6 @@
 #include <linux/errno.h>
 #include <linux/kernel.h> // several kernel macros and functions
 
-MODULE_LICENSE("GPL");
 
 // file operations fuctions prototypes
 static int dev_open(struct inode *, struct file *);
@@ -106,3 +105,7 @@ static int dev_release(struct inode *inod, struct file *fil)
 
 module_init(ceid_camera_init);
 module_exit(ceid_camera_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Markellos Orfanos <mark.orfanos@gmail.com>");
+MODULE_DESCRIPTION("Aptina MT9T001 Image Sensor Driver");
