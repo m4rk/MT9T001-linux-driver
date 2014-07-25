@@ -5,6 +5,7 @@
 #include <linux/kdev_t.h>
 #include <linux/cdev.h>
 #include <linux/types.h>
+#include <linux/errno.h>
 //#include <linux/kernel.h> // several kernel macros
 
 MODULE_LICENSE("GPL");
@@ -31,11 +32,13 @@ static struct file_operations fops =
 	
 static int __init ceid_camera_init(void)
 {
+	int err;
 	printk(KERN_INFO "CEID_CAM: Module loaded\n");
 	printk(KERN_INFO "CEID_CAM: Device registration -> ");
 	
 	if(alloc_chrdev_region(&dev_num, 0, 1, "ceidCam") < 0){
 		printk("failed!\n");
+		return err;
 	} else {
 		printk("succeded!\n");
 		printk(KERN_INFO "CEID_CAM: <Major, Minor>: <%d, %d>\n", MAJOR(dev_num), MINOR(dev_num));
@@ -43,19 +46,24 @@ static int __init ceid_camera_init(void)
 
 	// create device class
 	printk(KERN_INFO "CEID_CAM: class_create -> ");
-	if((cl = class_create(THIS_MODULE, "media") == NULL))
+	if(IS_ERR(cl = class_create(THIS_MODULE, "media"))){
 		printk("failed\n");
-	else
+		unregister_chrdev_region(dev_num, 1);
+		return PTR_ERR(cl);
+	}else{
 		printk("succeded \n");
+	}
 
 	cdev_init(&c_dev, &fops);
 
 	printk(KERN_INFO "CEID_CAM: cdev_add -> ");
-	if(cdev_add(&c_dev,dev_num,1) == -1)
+	if(err = cdev_add(&c_dev,dev_num,1) < 0){
 		printk("failed\n");
-	else
+		return err;
+	}else{
 		printk("succeded!\n");
-	
+	}
+
 	return 0;
 }
 
