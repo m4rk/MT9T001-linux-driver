@@ -1,13 +1,12 @@
 #!/bin/sh
-echo ""
-
 # Print ASCII
 echo "  ____  __  ____     __  ___ ____  ";
 echo " |  _ \|  \/  \ \   / / / _ \___ \ ";
 echo " | | | | |\/| |\ \ / / | | | |__) |";
 echo " | |_| | |  | | \ V /  | |_| / __/ ";
 echo " |____/|_|  |_|  \_/    \___/_____|";
-echo "                                   ";
+echo "            Diaplous Machine Vision";
+echo ""
 
 # Print Kernel and Shell info
 cat /proc/version
