@@ -1,16 +1,19 @@
 #!/bin/sh
 echo ""
+
+# Print ASCII
+echo "  ____  __  ____     __  ___ ____  ";
+echo " |  _ \|  \/  \ \   / / / _ \___ \ ";
+echo " | | | | |\/| |\ \ / / | | | |__) |";
+echo " | |_| | |  | | \ V /  | |_| / __/ ";
+echo " |____/|_|  |_|  \_/    \___/_____|";
+echo "                                   ";
+
+# Print Kernel and Shell info
+cat /proc/version
 /bin/bash --version
 echo "Loading /etc/profile"
 echo ""
-
-# Print ASCII
-echo "  ____  __  ____     _____ ____  ";
-echo " |  _ \|  \/  \ \   / / _ \___ \ ";
-echo " | | | | |\/| |\ \ / / | | |__) |";
-echo " | |_| | |  | | \ V /| |_| / __/ ";
-echo " |____/|_|  |_|  \_/  \___/_____|";
-echo "                                 ";
 
 # Set PS1 Variable for root
 export PS1="[\[\e[1m\]\u\[\e[0m\]@\[\e[1m\]\h\[\e[0m\]:\[\e[1m\]\w\[\e[0m\]]\[\e[1m\]#\[\e[0m\] " 
