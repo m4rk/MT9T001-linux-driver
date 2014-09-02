@@ -1,7 +1,9 @@
 main_prog.bin
+main_prog.bin.stream
 /sahb
 snapgear-2.6-p42.tar.bz2
 *.patch
+stream_software/
 
 # Never ignore .gitignore files
 !.gitignore

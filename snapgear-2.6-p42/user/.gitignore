@@ -1,8 +1,4 @@
 # For now ignore everything but the busybox configuration
-custom/
-ping/
-portmap/
-route/
-bash/
-sash/
-version/
+*/
+!busybox/
+!.gitignore

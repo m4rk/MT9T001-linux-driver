@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Save current configuration as dmv02 templates
+VENDOR_CONFIG=".config"
+LINUX_CONFIG="linux-2.6.21.1/.config"
+APPS_CONFIG="config/.config"
+BUSYBOX_CONFIG="user/busybox/busybox-1.8.2/.config"
+TEMPLATES_DIR="vendors/gaisler/leon2mmu/templates/dmv02"
+COPY="cp -v -f"
+
+echo "Saving current configuration as dmv02 default templates"
+$COPY $VENDOR_CONFIG $TEMPLATES_DIR/vendor.config
+$COPY $LINUX_CONFIG $TEMPLATES_DIR/linux.config
+$COPY $APPS_CONFIG $TEMPLATES_DIR/apps.config
+$COPY $BUSYBOX_CONFIG $TEMPLATES_DIR/busybox.config

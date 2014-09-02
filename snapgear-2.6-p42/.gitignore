@@ -19,3 +19,5 @@ driver
 # Never ignore .gitignore file
 !.gitignore
 
+# Ignore backups
+linux-2.6.21.1/drivers/media/bak.ceid_camera.c

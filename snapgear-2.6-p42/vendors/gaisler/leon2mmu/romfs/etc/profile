@@ -16,3 +16,7 @@ echo ""
 
 # Set PS1 Variable for root
 export PS1="[\[\e[1m\]\u\[\e[0m\]@\[\e[1m\]\h\[\e[0m\]:\[\e[1m\]\w\[\e[0m\]]\[\e[1m\]#\[\e[0m\] " 
+
+# Load module and go to nfs dir
+insmod /lib/modules/2.6.21.1/kernel/drivers/media/ceid_camera.ko
+cd /home/nfs
