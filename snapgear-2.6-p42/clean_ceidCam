@@ -1,2 +1,1 @@
-#!/bin/sh
 rm driver/ceid_camera.o driver/ceid_camera.ko driver/ceid_camera.mod.c driver/ceid_camera.mod.o

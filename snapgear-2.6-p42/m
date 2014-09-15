@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# delete old objects if present
+./clean_ceidCam
+
+# compile new image and create binary image for uploading
+make modules 
+if [ $? -eq 0 ]
+then
+	make modules_install
+	if [ $? -eq 0 ]
+	then
+		make image
+		if [ $? -eq 0 ]
+		then
+			./make_bin
+			if [ $? -eq 0 ]
+			then
+				cat make_bin
+				echo "images/image.bin created succesfully!"
+			else
+				echo "ERROR: images/image.bin was not created! Check error above."
+			fi
+		fi
+	fi
+fi
