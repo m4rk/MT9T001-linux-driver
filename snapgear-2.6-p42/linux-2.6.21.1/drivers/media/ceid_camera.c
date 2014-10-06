@@ -33,70 +33,61 @@ static inline void init_ahb_i2c(void)
 
 static unsigned int i2c_read(int pos)
 {
-    
-    volatile unsigned temp, data;
-    //int i;
-    
-    LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_WR);             //
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);      //
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);     //
+    	volatile unsigned temp, data;
+        
+	LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_WR);
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    LEON_BYPASS_STORE_PA(I2C_TXR, (pos & 0xFF)) ;                     //
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);                    //
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
+	LEON_BYPASS_STORE_PA(I2C_TXR, (pos & 0xFF));
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    temp = 100; while(temp--);
+	temp = 100; while(temp--);
 
+	LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_RD);
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_RD);             //
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);      //
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);     //
+	LEON_BYPASS_STORE_PA(I2C_CR,I2C_CMD_RD | I2C_CMD_ACK);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    LEON_BYPASS_STORE_PA(I2C_CR,I2C_CMD_RD | I2C_CMD_ACK);      //
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);     //
+	data = LEON_BYPASS_LOAD_PA(I2C_RXR) & 0xFF;
 
-    data = LEON_BYPASS_LOAD_PA(I2C_RXR) & 0xFF;
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_RD | I2C_CMD_NACK);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_RD | I2C_CMD_NACK);     //
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);    //
+	data = (data<<8) | (LEON_BYPASS_LOAD_PA(I2C_RXR) & 0xFF);
 
-    data = (data<<8) | (LEON_BYPASS_LOAD_PA(I2C_RXR) & 0xFF);
+	// read 1 or 2 bytes...
+	LEON_BYPASS_STORE_PA(I2C_CR,I2C_CMD_STO);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
 
-    // read 1 or 2 bytes...
-
-    LEON_BYPASS_STORE_PA(I2C_CR,I2C_CMD_STO);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
-
-    return data;
-    
+	return data;
 }
 
-static void i2c_write(int pos, int val){
-    
-    //int i;
-    
-    LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_WR);
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
+static void i2c_write(int pos, int val)
+{
+	LEON_BYPASS_STORE_PA(I2C_TXR, I2C_SADR | I2C_WR);
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STA | I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP);
 
-    LEON_BYPASS_STORE_PA(I2C_TXR, pos&0xFF) ;
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
+	LEON_BYPASS_STORE_PA(I2C_TXR, pos&0xFF) ;
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
 
-    // write MSB
-    LEON_BYPASS_STORE_PA(I2C_TXR, (val&0xFF00)>>8 );
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
+	// write MSB
+	LEON_BYPASS_STORE_PA(I2C_TXR, (val&0xFF00)>>8 );
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
 
+	// write LSB
+	LEON_BYPASS_STORE_PA(I2C_TXR, val&0xFF );
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
 
-    // write LSB
-    LEON_BYPASS_STORE_PA(I2C_TXR, val&0xFF );
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_WR);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_TIP); 
-
-
-    LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STO);
-    while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
+	LEON_BYPASS_STORE_PA(I2C_CR, I2C_CMD_STO);
+	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
 }
 
 static void setup_sensor(void){
