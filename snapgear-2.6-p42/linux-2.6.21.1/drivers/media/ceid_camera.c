@@ -12,6 +12,7 @@
 #include <asm/leon.h> // LEON_BYPASS assembly functions
 
 #include "ceid_camera.h"
+#include "ceid_camera_regs.h"
 
 // file operations fuctions prototypes
 static int dev_open(struct inode *, struct file *);
@@ -22,39 +23,6 @@ static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 static dev_t dev_num; // device number
 static struct cdev c_dev; //char device structure
 static struct class *cl; //device class 
-
-// Registers & Signals
-#define I2C_PRER_LO        0xE0000000       //     = 3'b000;
-#define I2C_PRER_HI        0xE0000004       //     = 3'b001;
-#define I2C_CTR            0xE0000008       //     = 3'b010;
-
-#define I2C_RXR            0xE000000C       //     = 3'b011;
-#define I2C_TXR            0xE000000C       //     = 3'b011;
-
-#define I2C_CR             0xE0000010       //     = 3'b100;
-#define I2C_SR             0xE0000010       //     = 3'b100;
-#define I2C_TXR_R          0xE0000014       //     = 3'b101; // undocumented / reserved output
-#define I2C_CR_R           0xE0000014       //     = 3'b110; // undocumented / reserved output
-
-#define I2C_RD             1
-#define I2C_WR             0
-#define I2C_SADR           0xBA
-
-#define I2C_CMD_STA        0x80
-#define I2C_CMD_STO        0x40
-#define I2C_CMD_RD         0x20
-#define I2C_CMD_WR         0x10
-#define I2C_CMD_NACK       0x08
-#define I2C_CMD_ACK        0x00
-#define I2C_CMD_IACK       0x01
-
-#define I2C_STATUS_RxACK   0x80
-#define I2C_STATUS_BUSY    0x40
-#define I2C_STATUS_AL      0x20
-#define I2C_STATUS_TIP     0x02
-#define I2C_STATUS_IF      0x01
-
-
 
 static inline void init_ahb_i2c(void)
 {
@@ -131,6 +99,55 @@ static void i2c_write(int pos, int val){
     while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
 }
 
+static void setup_sensor(void){
+
+	unsigned int frame_vertical_skip	= 1;	// 0:no skip, 1:2x, 2:3x etc. 
+	unsigned int frame_vertical_bin		= 2;	// 0:no bin, 1:2x, 2:3x .	
+	unsigned int frame_horizontal_skip	= 2;	// 0:no skip, 1:2x, 2:3x etc.
+	unsigned int frame_horizontal_bin	= 2;	// 0:no bin, 1:2x, 2:3x .
+	unsigned int frame_top	= 20+768-TEST_Y*(1+frame_vertical_skip);
+	unsigned int frame_left	= 20+1024-TEST_X*(1+frame_horizontal_skip);
+	unsigned int frame_width	= (1+frame_horizontal_skip)*2*TEST_X-1; // 2048;// 1535;
+	unsigned int frame_height	= (1+frame_vertical_skip)*2*TEST_Y-1;   // 1535; //767;
+	unsigned int sensor_gain = 0xff ; // 0x0051; // Maximum analog gain 7F.... and no digital gain
+	unsigned int skipbinv;
+	unsigned int skipbinh;
+
+	// Enable top rows from the sensor
+	unsigned int total_rows_in_push_master;
+	unsigned int total_cols_in_push_master;
+	unsigned int rows_cols_in_push_master;
+
+	i2c_write(0x1E,0x8040);  //by recomendation in the datasheet
+	i2c_write(0x4E,0x0020);  //by recomendation in the datasheet
+	i2c_write(0x32,0x04A4);  //test data
+	i2c_write( MT9T_OUT_CONTROL, MT9T_OUTPUT_NORMAL);  //don't generate test_data, just enable data output 
+	i2c_write(0x35,sensor_gain);  // gain	
+	i2c_write(MT9T_RESTART,0x1); 
+	i2c_write(MT9T_ROW_START,frame_top);    // First Row 
+	i2c_write(MT9T_COL_START,frame_left);    // First Collumn
+	i2c_write(MT9T_HEIGHT,frame_height);    // Set Window Height (up to 5FF)
+	i2c_write(MT9T_WIDTH,frame_width+EXTRA_COLUMNS);    // Set Window Width  (up to 7FF)
+	
+	skipbinv = (frame_vertical_bin<<4  ) + (frame_vertical_skip & 0xF  );
+	skipbinh = (frame_horizontal_bin<<4) + (frame_horizontal_skip & 0xF);
+	
+	i2c_write(0x22,skipbinv);    // Row Skip and Bin
+	i2c_write(0x23,skipbinh);    // Collumn Skip and Bin
+	i2c_write(MT9T_SHUT_WIDTH_L,1000);  //128
+	i2c_write(0x49,0x2A<<2);   // black level
+	i2c_write(MT9T_HOR_BLANK,0x008E); 
+	i2c_write(MT9T_VER_BLANK,0x0019);
+   
+	total_rows_in_push_master = (frame_height + 1)/(4*(frame_vertical_skip   + 1))-1;
+	total_cols_in_push_master = 512/4-1;
+	rows_cols_in_push_master = (total_rows_in_push_master<<8) | total_cols_in_push_master;
+	rows_cols_in_push_master = rows_cols_in_push_master & 0x0000FFFF;
+    
+	LEON_BYPASS_STORE_PA(0xF0000004, rows_cols_in_push_master);
+
+}
+
 static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
 {
 	reg_struct r;
@@ -197,6 +214,7 @@ static int __init ceid_camera_init(void)
 	}
 
 	init_ahb_i2c();
+	setup_sensor();
 
 	return 0;
 
