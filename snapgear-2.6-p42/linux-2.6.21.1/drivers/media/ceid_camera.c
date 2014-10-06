@@ -90,8 +90,14 @@ static void i2c_write(int pos, int val)
 	while ( LEON_BYPASS_LOAD_PA(I2C_SR) & I2C_STATUS_BUSY);
 }
 
-static void setup_sensor(void){
+static void reset_sensor(void)
+{
+	i2c_write(0x0D,0x01);
+	i2c_write(0x0D,0x00);
+}
 
+static void setup_sensor(void)
+{
 	unsigned int frame_vertical_skip	= 1;	// 0:no skip, 1:2x, 2:3x etc. 
 	unsigned int frame_vertical_bin		= 2;	// 0:no bin, 1:2x, 2:3x .	
 	unsigned int frame_horizontal_skip	= 2;	// 0:no skip, 1:2x, 2:3x etc.
@@ -136,7 +142,6 @@ static void setup_sensor(void){
 	rows_cols_in_push_master = rows_cols_in_push_master & 0x0000FFFF;
     
 	LEON_BYPASS_STORE_PA(0xF0000004, rows_cols_in_push_master);
-
 }
 
 static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
@@ -205,6 +210,7 @@ static int __init ceid_camera_init(void)
 	}
 
 	init_ahb_i2c();
+	reset_sensor();
 	setup_sensor();
 
 	return 0;
