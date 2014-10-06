@@ -92,8 +92,8 @@ static void i2c_write(int pos, int val)
 
 static void reset_sensor(void)
 {
-	i2c_write(0x0D,0x01);
-	i2c_write(0x0D,0x00);
+	i2c_write(MT9T_RESET, 0x01);
+	i2c_write(MT9T_RESET, 0x00);
 }
 
 static void setup_sensor(void)
@@ -115,11 +115,11 @@ static void setup_sensor(void)
 	unsigned int total_cols_in_push_master;
 	unsigned int rows_cols_in_push_master;
 
-	i2c_write(0x1E,0x8040);  //by recomendation in the datasheet
+	i2c_write(MT9T_READ_MODE1,0x8040);  //by recomendation in the datasheet
 	i2c_write(0x4E,0x0020);  //by recomendation in the datasheet
-	i2c_write(0x32,0x04A4);  //test data
+	i2c_write(MT9T_TEST_DATA,0x04A4);  //test data
 	i2c_write( MT9T_OUT_CONTROL, MT9T_OUTPUT_NORMAL);  //don't generate test_data, just enable data output 
-	i2c_write(0x35,sensor_gain);  // gain	
+	i2c_write(MT9T_GLOBAL_GAIN,sensor_gain);  // gain	
 	i2c_write(MT9T_RESTART,0x1); 
 	i2c_write(MT9T_ROW_START,frame_top);    // First Row 
 	i2c_write(MT9T_COL_START,frame_left);    // First Collumn
@@ -129,10 +129,10 @@ static void setup_sensor(void)
 	skipbinv = (frame_vertical_bin<<4  ) + (frame_vertical_skip & 0xF  );
 	skipbinh = (frame_horizontal_bin<<4) + (frame_horizontal_skip & 0xF);
 	
-	i2c_write(0x22,skipbinv);    // Row Skip and Bin
-	i2c_write(0x23,skipbinh);    // Collumn Skip and Bin
+	i2c_write(MT9T_ROW_ADDR_MODE,skipbinv);    // Row Skip and Bin
+	i2c_write(MT9T_COL_ADDR_MODE,skipbinh);    // Collumn Skip and Bin
 	i2c_write(MT9T_SHUT_WIDTH_L,1000);  //128
-	i2c_write(0x49,0x2A<<2);   // black level
+	i2c_write(MT9T_BLACK_GAIN,0x2A<<2);   // black level
 	i2c_write(MT9T_HOR_BLANK,0x008E); 
 	i2c_write(MT9T_VER_BLANK,0x0019);
    
