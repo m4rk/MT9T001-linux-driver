@@ -1,1 +1,4 @@
-rm driver/ceid_camera.o driver/ceid_camera.ko driver/ceid_camera.mod.c driver/ceid_camera.mod.o
+rm driver/ceid_camera.o
+rm driver/ceid_camera.ko
+rm driver/ceid_camera.mod.c
+rm driver/ceid_camera.mod.o
