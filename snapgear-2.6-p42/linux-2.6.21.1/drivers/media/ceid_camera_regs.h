@@ -78,4 +78,14 @@
 #define IMAGE_REG_SKIP  0
 #define TEST_EXTRA_Y    0
 
+// AHB Registers
+#define A_CONTROL0	0xF0000000
+#define A_STATUS0	0xF0000008
+
+// Sensor interface Registers
+#define SIF_REG0	0xF0000020
+#define SIF_REG1	0xF0000024
+#define SIF_REG2	0xF0000028
+#define SIF_REG3	0xF000002C
+
 #endif
