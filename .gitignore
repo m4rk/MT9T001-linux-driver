@@ -1,5 +1,6 @@
 main_prog.bin
 main_prog.bin.stream
+main_prog.bin.linux
 /sahb
 snapgear-2.6-p42.tar.bz2
 *.patch

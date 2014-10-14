@@ -21,3 +21,5 @@ driver
 
 # Ignore backups
 linux-2.6.21.1/drivers/media/bak.ceid_camera.c
+linux-2.6.21.1/drivers/media/ceid_camera.c.stage
+linux-2.6.21.1/drivers/media/ceid_camera.h.stage
