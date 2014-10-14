@@ -187,24 +187,24 @@ static struct file_operations fops =
 static int __init ceid_camera_init(void)
 {
 	int ret;
-	printk(KERN_INFO "CEID_CAM: Module loaded\n");
+	printk(KERN_INFO "%s: Module loaded\n", DRVNAME);
 	
 	// request major/minor numbers
-	if ((ret = alloc_chrdev_region(&dev_num, 0, 1, "ceidCam")) < 0) {
-		printk(KERN_INFO "CEID_CAM: Device registration -> failed!\n");
+	if ((ret = alloc_chrdev_region(&dev_num, 0, 1, DRVNAME)) < 0) {
+		printk(KERN_INFO "%s: Device registration -> failed!\n", DRVNAME);
 		return ret;
 	}
 
 	// add device to system
 	cdev_init(&c_dev, &fops);
 	if ((ret = cdev_add(&c_dev,dev_num,1)) < 0) {
-		printk(KERN_INFO "CEID_CAM: cdev_add -> failed\n");
+		printk(KERN_INFO "%s: cdev_add -> failed\n", DRVNAME);
 		goto error;
 	}
 
 	// create device class
 	if (IS_ERR(cl = class_create(THIS_MODULE, "media"))) {
-		printk(KERN_INFO "CEID_CAM: class_create -> failed\n");
+		printk(KERN_INFO "%s: class_create -> failed\n", DRVNAME);
 		ret = PTR_ERR(cl);
 		goto error;
 	}
@@ -227,13 +227,13 @@ static void __exit ceid_camera_exit(void)
 	class_destroy(cl);
 	cdev_del(&c_dev);
 	unregister_chrdev_region(dev_num, 1);
-	printk(KERN_INFO "CEID_CAM: module unloaded\n");
+	printk(KERN_INFO "%s: module unloaded\n", DRVNAME);
 }
 
 // Open
 static int dev_open(struct inode *inod, struct file *fil)
 {
-	//printk(KERN_INFO "CEID_CAM: Device Opened\n");
+	//printk(KERN_INFO "%s: Device Opened\n", DRVNAME);
 	return 0;
 }
 
@@ -249,14 +249,14 @@ static ssize_t dev_read(struct file* filp, char __user *buff, size_t len, loff_t
 // Writing
 static ssize_t dev_write(struct file *filp, const char __user *buff, size_t len, loff_t *off)
 {
-	printk(KERN_INFO "CEID_CAM: Writing to device\n");
+	printk(KERN_INFO "%s: Writing to device\n", DRVNAME);
 
 	return 0;
 }
 
 static int dev_release(struct inode *inod, struct file *fil)
 {
-	//printk(KERN_INFO "CEID_CAM: Device Closed\n");
+	//printk(KERN_INFO "%s: Device Closed\n", DRVNAME);
 	return 0;
 }
 

@@ -1,6 +1,9 @@
 #ifndef CEID_CAMERA_H
 #define CEID_CAMERA_H
+
 #include <linux/ioctl.h>
+
+#define DRVNAME	"MT9T001"
 
 // internal driver struct to use for i2c_read/write
 typedef struct
