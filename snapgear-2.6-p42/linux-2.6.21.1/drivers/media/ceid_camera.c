@@ -282,7 +282,10 @@ static int dev_open(struct inode *inod, struct file *fil)
 static ssize_t dev_read(struct file* filp, char __user *buff, size_t len, loff_t *off)
 {
 	unsigned int ret;
-	ret = i2c_read(0x00);
+
+	new_sif_start();
+	new_sif_wait();
+	ret = copy_to_user(buff, p, len);
 
 	return ret;
 }
