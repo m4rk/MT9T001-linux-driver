@@ -167,10 +167,15 @@ static void new_sif_wait(void)
 {
 	// FIXME: do the same with timer
 	unsigned int delay;
-
+	int k=0;
 	while ( (LEON_BYPASS_LOAD_PA(A_STATUS0) & 0x1) == 0 ){
-		delay=1000;
+		delay=50;
 		while(delay--);
+		k++;
+		if(k>100000){
+			printk(KERN_INFO "%s: Status Timeout\n",DRVNAME);
+			break;
+		}
 	}
 	LEON_BYPASS_STORE_PA(SIF_REG1, 0); //enable burst, enable capture
 }
@@ -178,17 +183,13 @@ static void new_sif_wait(void)
 static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
 {
 	reg_struct r;
-	//r.addr = 0;
-	//r.val = 0;
-	//printk(KERN_INFO "DRV:BEFORE: r.addr->%x r.val->%x\n\n",r.addr,r.val);
+
 	switch(cmd)
 	{
 		case CEIDCAM_RD_REG:
 			if (copy_from_user(&r, (reg_struct *)data, sizeof(reg_struct)))
 				return -EACCES;
-			//printk(KERN_INFO "DRV: r.addr: %x\n",r.addr);
 			r.val = i2c_read(r.addr);
-			//printk(KERN_INFO "DRV: r.val: %x\n",r.val);
 			if (copy_to_user((reg_struct *)data, &r, sizeof(reg_struct)))
 				return -EACCES;
 		break;
@@ -294,7 +295,6 @@ static ssize_t dev_read(struct file* filp, char __user *buff, size_t len, loff_t
 static ssize_t dev_write(struct file *filp, const char __user *buff, size_t len, loff_t *off)
 {
 	printk(KERN_INFO "%s: Writing to device\n", DRVNAME);
-
 	return 0;
 }
 
