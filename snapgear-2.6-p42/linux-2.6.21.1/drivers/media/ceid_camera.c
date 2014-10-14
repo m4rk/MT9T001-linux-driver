@@ -116,6 +116,7 @@ static void setup_sensor(void)
 	unsigned int total_cols_in_push_master;
 	unsigned int rows_cols_in_push_master;
 
+	i2c_write(MT9T_PIXEL_CLOCK, 0x0 | (0x1 << 15));
 	i2c_write(MT9T_READ_MODE1,0x8040);  //by recomendation in the datasheet
 	i2c_write(0x4E,0x0020);  //by recomendation in the datasheet
 	i2c_write(MT9T_TEST_DATA,0x04A4);  //test data
