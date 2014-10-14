@@ -9,7 +9,7 @@
 // internal driver struct to use for i2c_read/write
 typedef struct
 {
-    unsigned int addr, val;
+	unsigned int addr, val;
 } reg_struct;
 
 // ioctl defines
