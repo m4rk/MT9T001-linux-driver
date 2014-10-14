@@ -145,6 +145,35 @@ static void setup_sensor(void)
 	LEON_BYPASS_STORE_PA(0xF0000004, rows_cols_in_push_master);
 }
 
+static void start_sif(unsigned int pa_start, unsigned int row_start, unsigned int row_end, unsigned int col_start, unsigned int col_end)
+{
+	unsigned int reg1;
+	
+	LEON_BYPASS_STORE_PA(SIF_REG0, pa_start);
+	LEON_BYPASS_STORE_PA(SIF_REG2, ((row_start & 0xFFF)<<16) | (row_end & 0xFFF) );
+	LEON_BYPASS_STORE_PA(SIF_REG3, ((col_start & 0xFFF)<<16) | (col_end & 0xFFF) );
+	reg1 = LEON_BYPASS_LOAD_PA(SIF_REG1); 
+	LEON_BYPASS_STORE_PA(SIF_REG1, reg1 | 0x6); //enable burst, enable capture
+}
+
+static void new_sif_start(void)
+{
+	unsigned int pa_start = (unsigned int)virt_to_phys(p);
+	start_sif( pa_start, 0, BUFFER_SIZE*2-1, 0, BUFFER_SIZE*2-1);
+}
+
+static void new_sif_wait(void)
+{
+	// FIXME: do the same with timer
+	unsigned int delay;
+
+	while ( (LEON_BYPASS_LOAD_PA(A_STATUS0) & 0x1) == 0 ){
+		delay=1000;
+		while(delay--);
+	}
+	LEON_BYPASS_STORE_PA(SIF_REG1, 0); //enable burst, enable capture
+}
+
 static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
 {
 	reg_struct r;
