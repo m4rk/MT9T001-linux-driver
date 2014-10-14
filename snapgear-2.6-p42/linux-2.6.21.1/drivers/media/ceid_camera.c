@@ -23,6 +23,7 @@ static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 static dev_t dev_num; // device number
 static struct cdev c_dev; //char device structure
 static struct class *cl; //device class 
+static unsigned long *p; //pointer to img buffer 
 
 static inline void init_ahb_i2c(void)
 {
@@ -206,6 +207,16 @@ static int __init ceid_camera_init(void)
 	if (IS_ERR(cl = class_create(THIS_MODULE, "media"))) {
 		printk(KERN_INFO "%s: class_create -> failed\n", DRVNAME);
 		ret = PTR_ERR(cl);
+		goto error;
+	}
+
+	// Alocate image buffer   
+	p = (unsigned long *)__get_free_pages(GFP_KERNEL, get_order(BUFFER_SIZE*1024));
+	if(p){
+printk(KERN_INFO "%s: Allocated %dKB of memory (0x%lx-0x%lx)\n", DRVNAME, BUFFER_SIZE, virt_to_phys(p), virt_to_phys(p+((BUFFER_SIZE*BUFFER_SIZE)-1)));
+	}
+	else{
+		printk(KERN_INFO "%s: Could not allocate %dKB of memory!\n", DRVNAME, BUFFER_SIZE);
 		goto error;
 	}
 
