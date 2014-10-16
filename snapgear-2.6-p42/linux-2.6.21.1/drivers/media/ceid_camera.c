@@ -8,6 +8,7 @@
 #include <linux/errno.h>
 #include <linux/kernel.h> // several kernel macros and functions
 #include <linux/uaccess.h>
+#include <linux/delay.h>
 #include <asm/io.h>
 #include <asm/leon.h> // LEON_BYPASS assembly functions
 
@@ -165,19 +166,10 @@ static void new_sif_start(void)
 
 static void new_sif_wait(void)
 {
-	// FIXME: do the same with timer
-	unsigned int delay;
-	int k=0;
 	while ( (LEON_BYPASS_LOAD_PA(A_STATUS0) & 0x1) == 0 ){
-		delay=50;
-		while(delay--);
-		k++;
-		if(k>100000){
-			printk(KERN_INFO "%s: Status Timeout\n",DRVNAME);
-			break;
-		}
+		ndelay(1);
 	}
-	LEON_BYPASS_STORE_PA(SIF_REG1, 0); //enable burst, enable capture
+	LEON_BYPASS_STORE_PA(SIF_REG1, 0x0); //enable burst, enable capture
 }
 
 static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
@@ -282,13 +274,9 @@ static int dev_open(struct inode *inod, struct file *fil)
 // Reading
 static ssize_t dev_read(struct file* filp, char __user *buff, size_t len, loff_t *off)
 {
-	unsigned int ret;
-
 	new_sif_start();
 	new_sif_wait();
-	ret = copy_to_user(buff, p, len);
-
-	return ret;
+	return 0;
 }
 
 // Writing
