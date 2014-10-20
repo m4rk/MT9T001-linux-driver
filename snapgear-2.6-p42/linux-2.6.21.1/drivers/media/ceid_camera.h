@@ -16,5 +16,6 @@ typedef struct
 #define IOC_MAGIC 'm'
 #define CEIDCAM_RD_REG _IOR(IOC_MAGIC, 1, reg_struct *)
 #define CEIDCAM_WR_REG _IOW(IOC_MAGIC, 2, reg_struct *)
+#define CEIDCAM_RD_SIFADDR _IOR(IOC_MAGIC, 3, reg_struct *)
 
 #endif

@@ -190,6 +190,11 @@ static long dev_ioctl(struct file *f, unsigned int cmd, unsigned long data)
 				return -EACCES;
 			i2c_write(r.addr, r.val);
 		break;
+		case CEIDCAM_RD_SIFADDR:
+			r.addr = virt_to_phys(p);
+			if (copy_to_user((reg_struct *)data, &r, sizeof(reg_struct)))
+				return -EACCES;
+		break;
 		default:
 			return -ENOTTY;
 	}
