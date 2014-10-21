@@ -220,6 +220,7 @@ int main () {
 		"'w' --> write I2C register\n"
 		"'c' --> capture image and save to file\n"
 		"'v' --> send video stream\n"
+		"'x' --> exit\n"
 		"\nSelect: ");
         scanf ("%c", &ch);
 	//ch='m';
@@ -342,9 +343,12 @@ int main () {
 			close(stx);
 			
 			break;
+		case 'x':
+			printf("Exiting...\n");
+			break;	
 		default:
                         printf("Wrong choice\n");
-                        break;
+                        //break;
 	}
         close(fd);
 return 0;
