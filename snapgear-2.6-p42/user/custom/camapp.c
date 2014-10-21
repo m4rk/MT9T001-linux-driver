@@ -90,7 +90,7 @@ struct timeval tv; read");
 */
 int stx = 0; /* Socketdescriptor */
 struct          sockaddr_in target_host_address;
-unsigned char * target_address_holder;
+//unsigned char * target_address_holder;
 
 int create_udp_socket(int port) {
 	int    s;
@@ -112,7 +112,7 @@ int create_udp_socket(int port) {
 	return s;
 }
 
-void udp_init()
+void udp_init(char * dest_ip)
 {
 	stx = create_udp_socket(1902);
 	if (stx == -1) {
@@ -123,11 +123,12 @@ void udp_init()
 	/*init target address structure*/
 	target_host_address.sin_family=PF_INET;
 	target_host_address.sin_port=htons(1902);
-	target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
-	target_address_holder[0]=10;
-	target_address_holder[1]=21;
-	target_address_holder[2]=30;
-	target_address_holder[3]=49;
+	//target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
+	inet_pton(AF_INET,dest_ip,&target_host_address.sin_addr); 
+	//target_address_holder[0]=10;
+	//target_address_holder[1]=21;
+	//target_address_holder[2]=30;
+	//target_address_holder[3]=49;
 }
 
 //unsigned char msg[1512];
@@ -200,13 +201,13 @@ int main () {
 	unsigned long mem[BUFFER_SIZE * 1024];
 	struct timeval st,et;
 	int i,k,mem_dev,mem2;
+	char dest_ip[16] = "10.21.30.49";
 	//clock_t start, end;
 	//double time;
 	//unsigned int image[65536];
 	//reg_struct *t=(reg_struct *)malloc(sizeof(reg_struct));
 	//reg_struct t;
 
-	udp_init(); 	
 
 	fd = open("/dev/ceidCam", O_RDWR);
         if (fd == -1){
@@ -276,6 +277,16 @@ int main () {
 			printf("\nTotal time taken is : %lu microseconds\n",((et.tv_sec - st.tv_sec)*1000000+(et.tv_usec - st.tv_usec)));
 			break;
 		case 'v':
+			printf("Video will be streamed to IP: %s\n"
+				"Do you want to change it(y/n)? ",dest_ip);
+			scanf("%c",&ch); //ignore \n
+			scanf("%c",&ch);
+			if(ch=='y'){
+				printf("Destination's IPv4 address: ");
+				scanf("%s", dest_ip);
+			}
+			printf("Streaming to %s...\n",dest_ip);
+			udp_init(dest_ip); 	
 			read_sif_addr(fd);
 			//printf("Memory Start: 0x%08x\n",mem_address);
 			//break;
