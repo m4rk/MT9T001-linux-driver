@@ -1,4 +1,6 @@
-# For now ignore everything but the busybox configuration
+# Ignore everything except for busybox and custom apps
+/custom/camapp
 */
-!busybox/
+!/busybox/
+!/custom/
 !.gitignore
