@@ -65,5 +65,5 @@ romfs:
 #	make -C modules romfs
 
 clean:
-	-rm -f $(EXEC) *.elf *.gdb *.o test test.sig test.sig2 testcpp testnet testsin testthread
+	-rm -f $(EXEC) *.elf *.gdb *.o test test.sig test.sig2 testcpp testnet testsin testthread camapp
 	make -C modules clean 
