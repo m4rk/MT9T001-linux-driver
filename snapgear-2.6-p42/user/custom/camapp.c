@@ -88,40 +88,42 @@ struct timeval tv; read");
 	//}
 }
 */
-int stx = 0; /* Socketdescriptor */
-struct          sockaddr_in target_host_address;
+
+int    s;
+struct sockaddr_in target_host_address;
+//int stx = 0; /* Socketdescriptor */
 //unsigned char * target_address_holder;
 
-int create_udp_socket(int port) {
-	int    s;
-	struct sockaddr_in     host_address;
-	s=socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
+int create_udp_socket(int port, char *dest_ip) {
+	//struct sockaddr_in     host_address;
+	s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (s < 0) {
 		perror("socket()");
 		return -1;
 	}
-	memset((void*)&host_address, 0, sizeof(host_address));
-	host_address.sin_family=AF_INET;
-	host_address.sin_addr.s_addr=INADDR_ANY;
-	host_address.sin_port=htons(port);
-	if (bind(s, (struct sockaddr*)&host_address, sizeof(host_address)) < 0) {
-		perror("bind()");
-		return -1;
-	}
-    
-	return s;
+	memset((char *)&target_host_address, 0, sizeof(target_host_address));
+	//host_address.sin_family=AF_INET;
+	//host_address.sin_addr.s_addr=INADDR_ANY;
+	//host_address.sin_port=htons(port);
+	//if (bind(s, (struct sockaddr*)&host_address, sizeof(host_address)) < 0) {
+	//	perror("bind()");
+	//	return -1;
+	//}
+	target_host_address.sin_family=AF_INET;
+	target_host_address.sin_addr.s_addr=INADDR_ANY;
+	target_host_address.sin_port=htons(port);
+	//target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
+	inet_pton(AF_INET,dest_ip,&target_host_address.sin_addr);
+	
+	return 0;
 }
-
+/*
 void udp_init(char * dest_ip)
 {
 	stx = create_udp_socket(1902);
-	if (stx == -1) {
-        	perror("socket():");
-        	exit(1);
-	}
  
-	/*init target address structure*/
-	target_host_address.sin_family=PF_INET;
+	//init target address structure
+	target_host_address.sin_family=AF_INET;
 	target_host_address.sin_port=htons(1902);
 	//target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
 	inet_pton(AF_INET,dest_ip,&target_host_address.sin_addr); 
@@ -130,7 +132,7 @@ void udp_init(char * dest_ip)
 	//target_address_holder[2]=30;
 	//target_address_holder[3]=49;
 }
-
+*/
 //unsigned char msg[1512];
 //int ipos;
 //unsigned int pos;
@@ -139,8 +141,8 @@ void send_frame(unsigned int *virt_addr)//, unsigned char *flash)
 {
 int j,i;
 register unsigned int w;
-unsigned char msg[1500];// = flash;
-int ipos;
+unsigned char msg[800];// = flash;
+int ipos, slen = sizeof(target_host_address);
 unsigned int pos = (unsigned int)virt_addr;
 struct timeval st,et;
 for (j=0;j<256;j=j+1)
@@ -179,8 +181,8 @@ for (j=0;j<256;j=j+1)
 	//	gettimeofday(&et, NULL);
 	//	printf("\nTime : %lu msec\n",((et.tv_sec - st.tv_sec)*1000000+(et.tv_usec - st.tv_usec)));
 	//}
-		sendto(stx, msg, ipos+24, 0, (struct sockaddr*)&target_host_address, sizeof(struct sockaddr));
-	//printf("Row: %d\n",j);
+		sendto(s, msg, 798, 0, &target_host_address, slen);
+	//printf("ipos: %d\n",ipos+24); ipos+24 = 798
 	}
 }
 
@@ -202,6 +204,7 @@ int main () {
 	struct timeval st,et;
 	int i,k,mem_dev,mem2;
 	char dest_ip[16] = "10.21.30.49";
+	int port = 1902;
 	//clock_t start, end;
 	//double time;
 	//unsigned int image[65536];
@@ -287,7 +290,8 @@ int main () {
 				scanf("%s", dest_ip);
 			}
 			printf("Streaming to %s...\n",dest_ip);
-			udp_init(dest_ip); 	
+			//udp_init(dest_ip); 
+			create_udp_socket(port,dest_ip);
 			read_sif_addr(fd);
 			//printf("Memory Start: 0x%08x\n",mem_address);
 			//break;
@@ -340,7 +344,7 @@ int main () {
 			close(mem_dev);
 			munmap(mem_pointer,mem_size);
 			//close(mem2);
-			close(stx);
+			close(s);
 			
 			break;
 		case 'x':
