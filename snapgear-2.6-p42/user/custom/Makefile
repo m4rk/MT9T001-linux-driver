@@ -14,12 +14,14 @@ EXEC6 = testnet
 OBJS6 = testnet.o
 EXEC7 = testcpp
 OBJS7 = testcpp.o
+EXEC8 = camapp
+OBJS8 = camapp.o
 
 %o : %cxx
 	$(CXX) -v -I /opt/sparc-linux/include/c++/3.2.2 -I /opt/sparc-linux/include/c++/3.2.2/backward -I /opt/sparc-linux/include/c++/3.2.2/sparc-linux $(CFLAGS) -c -o $@ $< 
 
 #all: $(EXEC1) $(EXEC2) $(EXEC3) $(EXEC4) $(EXEC5) $(EXEC7) INSMODEXE
-all: $(EXEC1) $(EXEC2) $(EXEC3) $(EXEC4) $(EXEC5) $(EXEC6) INSMODEXE  #$(EXEC7) 
+all: $(EXEC1) $(EXEC2) $(EXEC3) $(EXEC4) $(EXEC5) $(EXEC6) $(EXEC8) INSMODEXE  #$(EXEC7) 
 
 $(EXEC1): $(OBJS1)
 	$(CC) $(LDFLAGS) -o $@ $(OBJS1) $(LDLIBS$(LDLIBS_$@))
@@ -43,6 +45,8 @@ $(EXEC6): $(OBJS6)
 $(EXEC7): $(OBJS7)
 	$(CC) -Wl,--start-group $(LDXXFLAGS) -o $@ $(OBJS7) -lstdc++ $(LDXXLIBS) -Wl,--end-group #-Wl,-M
 
+$(EXEC8): $(OBJS8)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS8) $(LDLIBS$(LDLIBS_$@)) 
 
 
 
@@ -53,10 +57,11 @@ romfs:
 #	$(ROMFSINST) /bin/$(EXEC1)
 #	$(ROMFSINST) /bin/$(EXEC2)
 #	$(ROMFSINST) /bin/$(EXEC3)
-	$(ROMFSINST) /bin/$(EXEC4)
+#	$(ROMFSINST) /bin/$(EXEC4)
 #	$(ROMFSINST) /bin/$(EXEC5)
-	$(ROMFSINST) /bin/$(EXEC6)
+#	$(ROMFSINST) /bin/$(EXEC6)
 #	$(ROMFSINST) /bin/$(EXEC7)
+	$(ROMFSINST) /bin/$(EXEC8)
 #	make -C modules romfs
 
 clean:
