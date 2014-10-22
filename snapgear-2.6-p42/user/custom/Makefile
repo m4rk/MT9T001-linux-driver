@@ -1,19 +1,19 @@
 
 
-EXEC1 = test
-OBJS1 = test.o
-EXEC2 = test.sig
-OBJS2 = test.sig.o
-EXEC3 = test.sig2
-OBJS3 = test.sig2.o
-EXEC4 = testsin
-OBJS4 = testsin.o
-EXEC5 = testthread
-OBJS5 = test_thread.o
-EXEC6 = testnet
-OBJS6 = testnet.o
-EXEC7 = testcpp
-OBJS7 = testcpp.o
+#EXEC1 = test
+#OBJS1 = test.o
+#EXEC2 = test.sig
+#OBJS2 = test.sig.o
+#EXEC3 = test.sig2
+#OBJS3 = test.sig2.o
+#EXEC4 = testsin
+#OBJS4 = testsin.o
+#EXEC5 = testthread
+#OBJS5 = test_thread.o
+#EXEC6 = testnet
+#OBJS6 = testnet.o
+#EXEC7 = testcpp
+#OBJS7 = testcpp.o
 EXEC8 = camapp
 OBJS8 = camapp.o
 
