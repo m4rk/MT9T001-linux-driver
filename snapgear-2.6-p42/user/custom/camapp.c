@@ -1,10 +1,13 @@
 #include <stdio.h>
-#include <fcntl.h>
-#include <sys/ioctl.h>
-#include <sys/time.h>
-#include <sys/mman.h>
-#include <unistd.h>
-#include <arpa/inet.h>
+#include <stdlib.h>	/*exit()*/
+#include <string.h>	/*memset()*/
+#include <fcntl.h>	/*open()*/
+#include <sys/ioctl.h>	/*ioctl()*/
+#include <sys/time.h>	/*timing functions*/
+#include <sys/mman.h>	/*mmap()*/
+#include <unistd.h>	/*read(),close()*/
+#include <arpa/inet.h>	/*struct sockaddr_in */
+#include <sys/socket.h>	/*socket()*/ 
 #include "ceid_camera.h"
 
 unsigned int mem_address;
