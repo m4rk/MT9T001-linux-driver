@@ -17,14 +17,11 @@ void read_i2c_reg(int fd, unsigned int addr)
 		perror("ioctl read");
 	else
 		printf("Reading register 0x%02x:0x%04x\n",addr,q.val);
-	
 }
 
 void write_i2c_reg(int fd, unsigned int addr, unsigned int val)
 {
 	reg_struct q;
-	//printf("USER:read_reg addr: %x\n",addr);
-	//printf("USER:read_reg val: %x\n",q->val);
 	
 	q.addr=addr;
 	q.val =val;	
@@ -32,7 +29,6 @@ void write_i2c_reg(int fd, unsigned int addr, unsigned int val)
 		perror("ioctl read");
 	else
 		read_i2c_reg(fd,addr);
-	
 }
 
 void read_sif_addr(int fd)
@@ -44,157 +40,67 @@ void read_sif_addr(int fd)
 	else
 		mem_address = q.addr;
 }
-/*
-void read_mem(int fd, unsigned long addr, unsigned long count)
-{
-	mem_struct m; // = (mem_struct *)malloc(sizeof(mem_struct));
-	//m->data = (unsigned long *)malloc(count * sizeof(unsigned long));
-	//m&->saddr=addr;
-	//m->count=count;	
-	//unsigned long *i;
-	int i;
-	struct timeval st,et;
-	gettimeofday(&st,NULL);
-	//for(i=0;i<11;i++)
-		ioctl(fd, CEIDCAM_RD_MEM, &m);
-	if (ioctl(fd, CEIDCAM_RD_MEM, &m) == -1){
-		perror("ioctlunsigned char tx_buffer[BUF_SIZE];
-unsigned char rx_buffer[BUF_SIZE];
 
-unsigned char   dest_ip[4];
-struct          sockaddr_in target_host_address;
-unsigned char*  target_address_holder;
-
-unsigned char cmd_index = 0x33;
-
-fd_set fds;
-struct timeval tv; read");
-	}
-	//else{
-		gettimeofday(&et, NULL);
-		printf("\nTotal time taken is : %lu seconds and %lu microseconds\n",(et.tv_sec - st.tv_sec),(et.tv_usec - st.tv_usec));
-		//i = m.data;
-		printf("USR: Start Buffer Value\t= 0x%lx\n",m.data[0]);
-		printf("USR: End Buffer Value\t= 0x%lx\n",m.data[65535]);
-
-		unsigned long tmp = count;
-		unsigned long saddr = addr;
-		while(tmp){
-			printf("0x%08x:0x%08x\n",saddr,m->data[(count % tmp)]);
-			saddr = saddr + 0x04;
-			tmp--;
-		}
-
-	//}
-}
-*/
 
 int    s;
 struct sockaddr_in target_host_address;
-//int stx = 0; /* Socketdescriptor */
-//unsigned char * target_address_holder;
 
-int create_udp_socket(int port, char *dest_ip) {
-	//struct sockaddr_in     host_address;
+int create_udp_socket(int port, char *dest_ip)
+{
 	s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (s < 0) {
 		perror("socket()");
 		return -1;
 	}
 	memset((char *)&target_host_address, 0, sizeof(target_host_address));
-	//host_address.sin_family=AF_INET;
-	//host_address.sin_addr.s_addr=INADDR_ANY;
-	//host_address.sin_port=htons(port);
-	//if (bind(s, (struct sockaddr*)&host_address, sizeof(host_address)) < 0) {
-	//	perror("bind()");
-	//	return -1;
-	//}
 	target_host_address.sin_family=AF_INET;
 	target_host_address.sin_addr.s_addr=INADDR_ANY;
 	target_host_address.sin_port=htons(port);
-	//target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
 	inet_pton(AF_INET,dest_ip,&target_host_address.sin_addr);
 	
 	return 0;
 }
-/*
-void udp_init(char * dest_ip)
+
+void send_frame(unsigned int *virt_addr)
 {
-	stx = create_udp_socket(1902);
- 
-	//init target address structure
-	target_host_address.sin_family=AF_INET;
-	target_host_address.sin_port=htons(1902);
-	//target_address_holder=(unsigned char*)&target_host_address.sin_addr.s_addr;
-	inet_pton(AF_INET,dest_ip,&target_host_address.sin_addr); 
-	//target_address_holder[0]=10;
-	//target_address_holder[1]=21;
-	//target_address_holder[2]=30;
-	//target_address_holder[3]=49;
-}
-*/
-//unsigned char msg[1512];
-//int ipos;
-//unsigned int pos;
-// +++++++++++++++++++++++++
-void send_frame(unsigned int *virt_addr)//, unsigned char *flash)
-{
-int j,i;
-register unsigned int w;
-unsigned char msg[800];// = flash;
-int ipos, slen = sizeof(target_host_address);
-unsigned int pos = (unsigned int)virt_addr;
-struct timeval st,et;
-for (j=0;j<256;j=j+1)
-        {
-	
-            msg[0] = 'I';
+	int j,i;
+	register unsigned int w;
+	unsigned char msg[800];// = flash;
+	int ipos, slen = sizeof(target_host_address);
+	unsigned int pos = (unsigned int)virt_addr;
+	struct timeval st,et;
 
-            msg[1] = ( 256 & 0x03FF ) >> 2 ;
-            msg[2] = ( 256 & 0x03FF ) >> 2 ;
+	for (j=0;j<256;j=j+1){
+		msg[0] = 'I';
+		msg[1] = ( 256 & 0x03FF ) >> 2 ;
+		msg[2] = ( 256 & 0x03FF ) >> 2 ;
+		msg[3] =  (j&0xFF00)>>8;
+		msg[4] =  j&0x00FF;
+		msg[5] =  1;
+		ipos = 6;
 
-            // packet index
-            msg[3] =  (j&0xFF00)>>8;
-            msg[4] =  j&0x00FF;
+		for (i=0;i<256;i++){
+			w=*(unsigned int *)pos;
+			/*
+			msg[ipos++] = (w&(0x00FF0000))>>16;  // red
+			msg[ipos++] = (w&(0xFF000000))>>24;  // green
+			msg[ipos++] = (w&(0x0000FF00))>>8;   // blue
+			*/
+			msg[ipos++] = w>>16;  // red
+			msg[ipos++] = w>>24;  // green
+			msg[ipos++] = w>>8;   // blue
 
-            msg[5] =  1;
-
-            ipos = 6;
-
-	//if (j==0){gettimeofday(&st,NULL);};
-	    for (i=0;i<256;i++) 
-            {
-                w=*(unsigned int *)pos;
-/*
-                msg[ipos++] = (w&(0x00FF0000))>>16;  // red
-                msg[ipos++] = (w&(0xFF000000))>>24;  // green
-                msg[ipos++] = (w&(0x0000FF00))>>8;   // blue
-*/
-                msg[ipos++] = w>>16;  // red
-                msg[ipos++] = w>>24;  // green
-                msg[ipos++] = w>>8;   // blue
-
-                pos=pos+4;
-
-            }
-	//if(j==0){
-	//	gettimeofday(&et, NULL);
-	//	printf("\nTime : %lu msec\n",((et.tv_sec - st.tv_sec)*1000000+(et.tv_usec - st.tv_usec)));
-	//}
-		sendto(s, msg, 798, 0, &target_host_address, slen);
-	//printf("ipos: %d\n",ipos+24); ipos+24 = 798
+			pos=pos+4;
+		}
+		sendto(s, msg, 798, 0, &target_host_address, slen); //798 = ipos+24
 	}
 }
 
-//const unsigned int mem_address = 0x71800000;
 const unsigned int mem_size = 0x40000;
+unsigned int  *mem_pointer, *virt_addr;
 
-const unsigned int mem_address2 = 0x60000000;
-const unsigned int mem_size2 = 0x1000;
-			unsigned int  *mem_pointer, *virt_addr;
-			unsigned int  *mem_pointer2, *flash;
-///////////////////////////////////////////////////
-int main () {
+int main()
+{
         int fd;
 	FILE *output;
         char ch, write_buf[11];
@@ -355,5 +261,5 @@ int main () {
                         //break;
 	}
         close(fd);
-return 0;
+	return 0;
 }
